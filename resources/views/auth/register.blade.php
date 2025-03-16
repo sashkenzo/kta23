@@ -1,52 +1,44 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
+@extends('layouts.master')
+
+@section('cfsr')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+@endsection
+
+@section('content')
+    <form method="POST" action="{{ route('login') }}">
         @csrf
-
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-        </div>
-
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="row mb-7">
+                    <label for="email" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col">
+                        <input type="email" class="form-control" id="email" name="email">
+                        @if($errors->has('email'))
+                            <code>{{$errors->first('email')}}</code>
+                        @endif
+                    </div>
+                    <div class="row mb-3">
+                        <label for="password" class="col-sm-2 col-form-label">Password</label>
+                        <div class="col">
+                            <input type="password" class="form-control" id="password" name="password">
+                            @if($errors->has('password'))
+                                <code>{{$errors->first('password')}}</code>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="password_confirmation" class="col-sm-2 col-form-label">Confirm Password</label>
+                        <div class="col">
+                            <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
+                            @if($errors->has('password'))
+                                <code>{{$errors->first('password')}}</code>
+                            @endif
+                        </div>
+                    </div>
+                    <a href="{{ route('login') }}">'Already registered?'</a>
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </div>
+            </div>
         </div>
     </form>
-</x-guest-layout>
+@endsection
