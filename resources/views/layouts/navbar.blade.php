@@ -1,9 +1,14 @@
-<nav class="navbar navbar-expand-md bg-dark sticky-top border-bottom" data-bs-theme="dark">
+<nav class="navbar navbar-expand-md sticky-top border-bottom">
     <div class="container">
         <a class="navbar-brand d-md-none" href="#">
-            <svg class="bi" width="24" height="24"><use xlink:href="#aperture"/></svg>
-            Kullapood
+            <h2>kullapood</h2>
         </a>
+
+        <form class="d-flex d-block d-sm-block d-md-none" role="search">
+            <input class="form-control me-2 sm:hidden" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success sm:hidden" type="submit">Search</button>
+        </form>
+
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -13,7 +18,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
-                <ul class="navbar-nav flex-grow-1 justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
                     <li class="nav-item"><a class="nav-link" href="#">
                             <svg class="bi" width="24" height="24"><use xlink:href="#aperture"/></svg>
                         </a></li>
@@ -23,22 +28,37 @@
                     <li class="nav-item"><a class="nav-link" href="#">Enterprise</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Support</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Pricing</a></li>
-                    @csrf
-                    @if (Route::has('login'))
-                        @auth
-                            <a class="nav-link" href="{{ url('/dashboard') }}">Dashboard</a>
-                        @else
-                            <a class="nav-link"href="{{ route('login') }}">Log in</a>
-
-                            @if (Route::has('register'))
-                                <a class="nav-link" href="{{ route('register') }}">Register</a>
-                            @endif
-                        @endauth
-                    @endif
-                    <form class="d-flex " role="search">
+                    <form class="d-flex d-none d-sm-none d-md-block" role="search">
                         <input class="form-control me-2 sm:hidden" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success sm:hidden" type="submit">Search</button>
                     </form>
+
+                    @csrf
+                    @if (Route::has('login'))
+                        @auth
+                            <div class="dropdown">
+                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Profile
+                                </a>
+
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{{ url('/dashboard') }}">Dashboard</a></li>
+                                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                                    <form method="POST" action="{{route('logout')}}">
+                                    @csrf
+                                    <li><a class="dropdown-item" href="{{route('logout')}}" onclick="event.preventDefault();
+                                            this.closest('form').submit()">Sign Out</a></li>
+                                    </form>
+                                </ul>
+                            </div>
+                        @else
+                            <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Log in</a></li>
+
+                            @if (Route::has('register'))
+                                <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>
+                            @endif
+                        @endauth
+                    @endif
 
                 </ul>
             </div>

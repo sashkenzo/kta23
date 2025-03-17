@@ -1,15 +1,17 @@
 @extends('layouts.master')
-
-@section('cfsr')
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-@endsection
-
 @section('content')
-    <form method="POST" action="{{ route('login') }}">
+    <form method="POST" action="{{ route('register') }}">
         @csrf
         <div class="card mb-3">
             <div class="card-body">
                 <div class="row mb-7">
+                    <label for="name" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col">
+                        <input class="form-control" id="name" name="name">
+                        @if($errors->has('name'))
+                            <code>{{$errors->first('name')}}</code>
+                        @endif
+                    </div>
                     <label for="email" class="col-sm-2 col-form-label">Email</label>
                     <div class="col">
                         <input type="email" class="form-control" id="email" name="email">
