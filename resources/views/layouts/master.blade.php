@@ -17,6 +17,7 @@
 
 <body>
 <header>
+    @include ("layouts.loginbar")
     @include ("layouts.navbar")
 </header>
 @yield('content')
