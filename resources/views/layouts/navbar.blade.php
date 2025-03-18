@@ -1,9 +1,9 @@
-<nav class="navbar navbar-expand-md sticky-top border-bottom">
+<nav class="navbar navbar-expand-md border-bottom">
     <div class="container">
         <div class="row container col-md-12 text-center">
             <div class="col col-md-3">
-            <div class="dropdown-center">
-                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+             <div class="dropdown">
+                <button class="nav-item btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     Kuld
                 </button>
                 <ul class="dropdown-menu text-center">
@@ -15,8 +15,8 @@
             </div>
             </div>
             <div class="col col-md-3">
-            <div class="dropdown-center ">
-                <button class="btn dropdown-toggle text-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <div class="dropdown">
+                <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     Hõbe
                 </button>
                 <ul class="dropdown-menu text-center">
@@ -28,8 +28,8 @@
             </div>
             </div>
         <div class="col col-md-3">
-            <div class="dropdown-center ">
-                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <div class="dropdown">
+                <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     Info
                 </button>
                 <ul class="dropdown-menu text-center">
@@ -41,8 +41,8 @@
             </div>
             </div>
         <div class="col col-md-3">
-            <div class="dropdown-center ">
-                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <div class="dropdown">
+                <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     Meist
                 </button>
                 <ul class="dropdown-menu text-center">
@@ -50,10 +50,7 @@
                     <li><a class="dropdown-item" href="#">Rekvisiidid</a></li>
                 </ul>
             </div>
-            </div>
-
-
-
+        </div>
         </div>
     </div>
 </nav>

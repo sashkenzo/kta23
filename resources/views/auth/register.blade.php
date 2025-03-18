@@ -1,5 +1,3 @@
-@extends('layouts.master')
-@section('content')
     <form method="POST" action="{{ route('register') }}">
         @csrf
         <div class="container align-items-center mt-4">
@@ -45,11 +43,8 @@
                         </div>
                     </div>
                 <button style="float: right;" type="submit" class="btn btn-primary">Register</button>
-                    <a style="float: left;" href="{{ route('login') }}">'Already registered?'</a>
-
                 </div>
             </div>
         </div>
         </div>
     </form>
-@endsection
