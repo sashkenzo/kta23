@@ -7,4 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/carousel', [CarouselController::class, 'index'])->name('carousel');
 Route::get('/carousel/new', [CarouselController::class, 'create'])->name('carousel.create');
-Route::post('/carousel/store', [CarouselController::class, 'store'])->name('carousel.store');
+Route::get('/carousel/{id}', [CarouselController::class, 'edit'])->name('carousel.edit');
+Route::post('/carousel', [CarouselController::class, 'store'])->name('carousel.store');
+Route::put('/carousel/{id}', [CarouselController::class, 'update'])->name('carousel.update');
+Route::delete('/carousel/{id}', [CarouselController::class, 'destroy'])->name('carousel.delete');

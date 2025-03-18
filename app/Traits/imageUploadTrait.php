@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 
 trait imageUploadTrait{
 
-    public function uploadImage(Request $request,$inputName,$path){
+    public function uploadImage(Request $request,$inputName,$path,$oldPath=null){
         if ($request->hasFile($inputName)) {
-
+            if ($oldPath) {
+                unlink(public_path($oldPath));
+            }
 
             $image = $request->{$inputName};
             $imageName = 'madia_'.time() . '_' . rand(0, 100) . '_' . rand(0, 100) . '.' . $image->getClientOriginalExtension();
@@ -17,8 +19,7 @@ trait imageUploadTrait{
 
             return $path .'/'.$imageName;
         }else{
-
-            return null;
+            return $oldPath;
         }
     }
 }
