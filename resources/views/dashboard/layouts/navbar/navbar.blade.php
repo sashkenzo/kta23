@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md border-bottom">
+<nav class="navbar navbar-expand-md">
     <div class="container">
         <div class="row container col-md-12 text-center">
             <div class="col col-md-3">
