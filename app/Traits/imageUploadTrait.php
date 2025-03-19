@@ -13,7 +13,7 @@ trait imageUploadTrait{
             }
 
             $image = $request->{$inputName};
-            $imageName = 'madia_'.time() . '_' . rand(0, 100) . '_' . rand(0, 100) . '.' . $image->getClientOriginalExtension();
+            $imageName = 'media_'.time() . '_' . rand(0, 100) . '_' . rand(0, 100) . '.' . $image->getClientOriginalExtension();
 
             $image->move(public_path($path), $imageName);
 

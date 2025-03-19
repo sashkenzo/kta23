@@ -19,42 +19,42 @@
                 <div class="card-body">
                         <div class="form-group">
                             <label>Banner</label>
-                            <input type="file" class="form-control" name="name">
+                            <input type="file" class="form-control" name="image">
+                            @if($errors->has('image'))
+                                <code>{{$errors->first('image')}}</code>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" class="form-control" name="name">
                             @if($errors->has('name'))
                                 <code>{{$errors->first('name')}}</code>
                             @endif
                         </div>
                         <div class="form-group">
-                            <label>TItle</label>
-                            <input type="text" class="form-control" name="title">
-                            @if($errors->has('title'))
-                                <code>{{$errors->first('title')}}</code>
-                            @endif
-                        </div>
-                        <div class="form-group">
-                            <label>Type</label>
-                            <input type="text" class="form-control" name="type">
-                            @if($errors->has('type'))
-                                <code>{{$errors->first('type')}}</code>
-                            @endif
-                        </div>
-                        <div class="form-group">
-                            <label>Starting Price</label>
-                            <input type="text" class="form-control" name="price">
-                            @if($errors->has('price'))
-                                <code>{{$errors->first('price')}}</code>
+                            <label>Content</label>
+                            <input type="text" class="form-control" name="content">
+                            @if($errors->has('content'))
+                                <code>{{$errors->first('content')}}</code>
                             @endif
                         </div>
                         <div class="form-group">
                             <label>Button Url</label>
                             <input type="text" class="form-control" name="button_url">
-                            @if($errors->has('button_url'))
+                            @if($errors->has('price'))
                                 <code>{{$errors->first('button_url')}}</code>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label>Button Url text</label>
+                            <input type="text" class="form-control" name="button_url_text">
+                            @if($errors->has('button_url_text'))
+                                <code>{{$errors->first('button_url_text')}}</code>
                             @endif
                         </div>
                     <div class="form-group">
                         <label>Serial</label>
-                        <input type="text" class="form-control" name="serial">
+                        <input type="number" class="form-control" name="serial">
                         @if($errors->has('serial'))
                             <code>{{$errors->first('serial')}}</code>
                         @endif

@@ -46,6 +46,7 @@
                     Meist
                 </button>
                 <ul class="dropdown-menu text-center">
+                    <li><a class="dropdown-item" href="#">Blog</a></li>
                     <li><a class="dropdown-item" href="#">Kontakt</a></li>
                     <li><a class="dropdown-item" href="#">Rekvisiidid</a></li>
                 </ul>

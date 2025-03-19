@@ -12,9 +12,7 @@
             @endif
             <div class="card">
                 <div class="card-header">
-
-                    <h4>Simple Table</h4>
-                    <a class="button" href="{{route('change.carousel.create')}}">create</a>
+                    <a class="btn btn-outline-success" href="{{route('change.carousel.create')}}">Create</a>
                 </div>
                 <div class="card-body">
                     {{$dataTable->table()}}
