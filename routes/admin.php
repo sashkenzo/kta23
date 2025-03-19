@@ -5,6 +5,8 @@ use App\Http\Controllers\Change\FooterController;
 use App\Http\Controllers\Change\LoginbarController;
 use App\Http\Controllers\Change\BannerController;
 use App\Http\Controllers\Change\NavbarController;
+use App\Http\Controllers\Change\SubnavbarController;
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -28,10 +30,10 @@ Route::delete('/carousel/{id}', [CarouselController::class, 'destroy'])->name('c
 
 Route::get('/banner', [BannerController::class, 'index'])->name('banner');
 Route::get('/banner/new', [BannerController::class, 'create'])->name('banner.create');
-Route::get('/banner/edit', [BannerController::class, 'edit'])->name('banner.edit');
+Route::get('/banner/{id}', [BannerController::class, 'edit'])->name('banner.edit');
 Route::post('/banner', [BannerController::class, 'store'])->name('banner.store');
-Route::put('/banner', [BannerController::class, 'update'])->name('banner.update');
-Route::delete('/banner', [BannerController::class, 'destroy'])->name('banner.delete');
+Route::put('/banner/{id}', [BannerController::class, 'update'])->name('banner.update');
+Route::delete('/banner/{id}', [BannerController::class, 'destroy'])->name('banner.delete');
 
 // change Cards form //
 
@@ -68,3 +70,12 @@ Route::get('/navbar/{id}', [NavbarController::class, 'edit'])->name('navbar.edit
 Route::post('/navbar', [NavbarController::class, 'store'])->name('navbar.store');
 Route::put('/navbar/{id}', [NavbarController::class, 'update'])->name('navbar.update');
 Route::delete('/navbar/{id}', [NavbarController::class, 'destroy'])->name('navbar.delete');
+
+// change subNavBar form //
+
+Route::get('/subnavbar', [SubnavbarController::class, 'index'])->name('subnavbar');
+Route::get('/subnavbar/new', [SubnavbarController::class, 'create'])->name('subnavbar.create');
+Route::get('/subnavbar/{id}', [SubnavbarController::class, 'edit'])->name('subnavbar.edit');
+Route::post('/subnavbar', [SubnavbarController::class, 'store'])->name('subnavbar.store');
+Route::put('/subnavbar/{id}', [SubnavbarController::class, 'update'])->name('subnavbar.update');
+Route::delete('/subnavbar/{id}', [SubnavbarController::class, 'destroy'])->name('subnavbar.delete');

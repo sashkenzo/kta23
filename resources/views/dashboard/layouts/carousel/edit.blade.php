@@ -72,7 +72,7 @@
                 </form>
                 <div class="card-footer">
                     <a class="btn btn-outline-dark" href="{{route('change.carousel')}}">Back</a>
-                    <button form="update" type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete-line">
+                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete-line">
                         Delete
                     </button>
                     <button form="update" type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#create-new-line">

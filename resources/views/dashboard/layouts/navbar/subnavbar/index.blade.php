@@ -1,6 +1,6 @@
 @extends('dashboard.components.master')
 @section('page')
-<h1 class="h2">Navbar</h1>
+<h1 class="h2">Subcategory for category's in Navigation</h1>
 @endsection
 @section('section')
     <div class="row">
@@ -12,7 +12,7 @@
             @endif
             <div class="card">
                 <div class="card-header">
-                    <a class="btn btn-outline-success" href="{{route('change.navbar.create')}}">Create</a>
+                    <a class="btn btn-outline-success" href="{{route('change.subnavbar.create')}}">Create</a>
                 </div>
                 <div class="card-body">
                     {{$dataTable->table()}}

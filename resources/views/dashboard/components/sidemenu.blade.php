@@ -9,49 +9,38 @@
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
+                @if(Auth::user()->role=='admin')
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                     <li class="nav-item dropdown">
+
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            Change web items
+                            Manage web items
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">LoginBar</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">NavBar</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
+
+                            <li><a class="dropdown-item" href="{{route('change.navbar')}}">NavBar</a></li>
+
+                            <li><a class="dropdown-item" href="{{route('change.subnavbar')}}">SubNavBar</a></li>
+
                             <li><a class="dropdown-item" href="{{route('change.carousel')}}">Carousel</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
+
                             <li><a class="dropdown-item" href="{{route('change.banner')}}">Banner</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
+
                             <li><a class="dropdown-item" href="#">Cards</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
+
                             <li><a class="dropdown-item" href="#">Footer</a></li>
                         </ul>
                     </li>
                 </ul>
+                @endif
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 border-top mt-2">
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     Account</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{ url('/dashboard') }}">Dashboard</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
                             <li><a class="dropdown-item" href="{{route('profile.edit')}}">Settings</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
                             <form method="POST" action="{{route('logout')}}">
                                 @csrf
                                 <li><a class="dropdown-item" href="{{route('logout')}}" onclick="event.preventDefault();
@@ -62,7 +51,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col col-7">@yield('page')</div>
+        <div class="col col-11 text-center">@yield('page')</div>
     </div>
 </nav>
 
