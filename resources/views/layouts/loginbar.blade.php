@@ -25,8 +25,7 @@
                             <li><a class="dropdown-item" href="{{route('profile.edit')}}">Settings</a></li>
                             <form method="POST" action="{{route('logout')}}">
                                 @csrf
-                                <li><a class="dropdown-item" href="{{route('logout')}}" onclick="event.preventDefault();
-                                            this.closest('form').submit()">Sign Out</a></li>
+                                <li><a class="dropdown-item" href="{{route('logout')}}">Sign Out</a></li>
                             </form>
                         </ul>
                     </div>
