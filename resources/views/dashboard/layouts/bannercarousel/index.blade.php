@@ -1,6 +1,6 @@
 @extends('dashboard.components.master')
 @section('page')
-<h1 class="h2">Carousel</h1>
+<h1 class="h2">Banner-Carouse</h1>
 @endsection
 @section('section')
     <div class="row">
@@ -12,7 +12,7 @@
             @endif
             <div class="card">
                 <div class="card-header">
-                    <a class="btn btn-outline-success" href="{{route('change.carousel.create')}}">Create</a>
+                    <a class="btn btn-outline-success" href="{{route('change.bannercarousel.create')}}">Create</a>
                 </div>
                 <div class="card-body">
                     {{$dataTable->table()}}

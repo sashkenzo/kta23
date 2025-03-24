@@ -14,9 +14,23 @@
                     <div class="card-header">
                         <h4>New category in navbar</h4>
                     </div>
-                    <form action="{{route('change.navbar.store')}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('change.subnavbar.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="card-body">
+                            <div class="form-group">
+                                <div class="input-group mb-3">
+                                    <label class="input-group-text" for="inputGroupSelect01">NavBarCategory</label>
+                                    <select class="form-select" id="inputGroupSelect01" name="category_id">
+                                        @foreach($navbars as $navbar)
+                                            <option value={{$navbar->id}}>{{$navbar->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                @if($errors->has('category_id'))
+                                    <code>{{$errors->first('category_id')}}</code>
+                                @endif
+                            </div>
                             <div class="form-group">
                                 <label>Name</label>
                                 <input type="text" class="form-control" name="name">

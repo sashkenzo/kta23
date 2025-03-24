@@ -15,12 +15,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('users')->insert([
-            'name' => 'Administrator',
-            'email' => 'sashkoid2@gmail.com',
-            'password' => Hash::make('Passw0rd'),
-            'role' => 'admin',
-            'status' => 'active'
+        $this->call([
+            UserSeeder::class,
+            NavBarSeeder::class,
+            Banner2CarouselSeeder::class,
+            SubNavBarSeeder::class,
         ]);
     }
 }

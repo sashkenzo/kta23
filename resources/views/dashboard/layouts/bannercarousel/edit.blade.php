@@ -12,14 +12,14 @@
             @endif
             <div class="card">
                 <div class="card-header">
-                    <h4>New Carousel</h4>
+                    <h4>New Banner-Carouse</h4>
                 </div>
-                <form action="{{route('change.carousel.update',$carousel->id)}}" method="POST" enctype="multipart/form-data" id="update">
+                <form action="{{route('change.bannercarousel.update',$bannercarousel->id)}}" method="POST" enctype="multipart/form-data" id="update">
                     @csrf
                     @method('PUT')
                 <div class="card-body">
                     <div class="form-group">
-                        <p><img height="100" src="{{asset($carousel->image)}}" alt="Preview of a banner"></p>
+                        <p><img height="100" src="{{asset($bannercarousel->image)}}" alt="Preview of a banner"></p>
                         <label>Banner</label>
                         <input type="file" class="form-control" name="image">
                         @if($errors->has('image'))
@@ -28,50 +28,50 @@
                     </div>
                     <div class="form-group">
                         <label>Name</label>
-                        <input type="text" class="form-control" name="name" value="{{$carousel->name}}">
+                        <input type="text" class="form-control" name="name" value="{{$bannercarousel->name}}">
                         @if($errors->has('name'))
                             <code>{{$errors->first('name')}}</code>
                         @endif
                     </div>
                     <div class="form-group">
                         <label>Content</label>
-                        <input type="text" class="form-control" name="content" value="{{$carousel->content}}">
+                        <input type="text" class="form-control" name="content" value="{{$bannercarousel->content}}">
                         @if($errors->has('content'))
                             <code>{{$errors->first('content')}}</code>
                         @endif
                     </div>
                     <div class="form-group">
                         <label>button url</label>
-                        <input type="text" class="form-control" name="button_url" value="{{$carousel->button_url}}">
+                        <input type="text" class="form-control" name="button_url" value="{{$bannercarousel->button_url}}">
                         @if($errors->has('button_url'))
                             <code>{{$errors->first('button_url')}}</code>
                         @endif
                     </div>
                     <div class="form-group">
                         <label>Button Url text</label>
-                        <input type="text" class="form-control" name="button_url_text" value="{{$carousel->button_url_text}}">
+                        <input type="text" class="form-control" name="button_url_text" value="{{$bannercarousel->button_url_text}}">
                         @if($errors->has('button_url_text'))
                             <code>{{$errors->first('button_url_text')}}</code>
                         @endif
                     </div>
                     <div class="form-group">
                         <label>Serial</label>
-                        <input type="number" class="form-control" name="serial" value="{{$carousel->serial}}">
+                        <input type="number" class="form-control" name="serial" value="{{$bannercarousel->serial}}">
                         @if($errors->has('serial'))
                             <code>{{$errors->first('serial')}}</code>
                         @endif
                     </div>
                     <div class="form-group">
-                        <label>Status: {{$carousel->status}}</label>
+                        <label>Status: {{$bannercarousel->status}}</label>
                         <select class="form-control" name="status" >
-                            <option value="1">Active</option>
-                            <option value="0">Inactive</option>
+                            <option {{$bannercarousel->status == 1 ? 'selected': ''}} value='1'>1</option>
+                            <option {{$bannercarousel->status == 0 ? 'selected': ''}} value='0'>0</option>
                         </select>
                     </div>
                 </div>
                 </form>
                 <div class="card-footer">
-                    <a class="btn btn-outline-dark" href="{{route('change.carousel')}}">Back</a>
+                    <a class="btn btn-outline-dark" href="{{route('change.bannercarousel')}}">Back</a>
                     <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete-line">
                         Delete
                     </button>
@@ -108,7 +108,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
-                                    <form action="{{route('change.carousel.delete',$carousel->id)}}" method="POST">
+                                    <form action="{{route('change.bannercarousel.delete',$bannercarousel->id)}}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                     <button type="submit" class="btn btn-outline-success">Accept</button>

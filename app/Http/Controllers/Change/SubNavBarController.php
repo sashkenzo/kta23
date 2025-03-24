@@ -2,22 +2,24 @@
 
 namespace App\Http\Controllers\Change;
 
-use App\DataTables\NavbarDataTable;
+use App\DataTables\SubNavBarDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Navbar;
+use App\Models\SubNavbar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class SubnavbarController extends Controller
+class SubNavBarController extends Controller
 {
-    public function index(NavbarDataTable $dataTable)
+    public function index(SubNavbarDataTable $dataTable)
     {
-        return $dataTable->render('dashboard.layouts.navbar.index');
+        return $dataTable->render('dashboard.layouts.subnavbar.index');
     }
 
     public function create()
     {
-        return view('dashboard.layouts.navbar.create');
+        $navbars = Navbar::all();
+        return view('dashboard.layouts.subnavbar.create',compact('navbars'));
     }
 
     /**
@@ -25,19 +27,18 @@ class SubnavbarController extends Controller
      */
     public function store(Request $request)
     {
-        $navbar = new Navbar();
+        $subnavbar = new SubNavBar();
 
-        $navbar->fill($request->validate([
-            'name'=>['required','max:100','unique:navbars,name'],
+        $subnavbar->fill($request->validate([
+            'category_id' => 'required',
+            'name'=>['required','max:200','unique:sub_nav_bars,name'],
             'slug'=>['required','max:200'],
-            'icon'=>['nullable','max:2048'],
             'status'=>['required'],
         ]));
-        $navbar->icon = substr($navbar->icon, 0,5).'width="24" height ="24" '.substr($navbar->icon, 5,null);
-        $navbar->slug=Str::slug($request->slug);
-        $navbar->save();
+        $subnavbar->slug=Str::slug($request->slug);
+        $subnavbar->save();
 
-        return redirect()->route('change.navbar')->with('status','Carousel created successfully');
+        return redirect()->route('change.subnavbar')->with('status','Sub-category for navbar created successfully');
     }
 
     /**
@@ -53,8 +54,9 @@ class SubnavbarController extends Controller
      */
     public function edit(string $id)
     {
-        $navbar = Navbar::findOrFail($id);
-        return view('dashboard.layouts.navbar.edit',compact('navbar'));
+        $navbars = Navbar::all();
+        $subnavbar = SubNavBar::findOrFail($id);
+        return view('dashboard.layouts.subnavbar.edit',compact('subnavbar','navbars'));
     }
 
     /**
@@ -62,19 +64,17 @@ class SubnavbarController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $navbar = Navbar::findOrFail($id);
-
-        $oldIcon = $navbar->icon;
-
-        $navbar->fill($request->validate([
-            'name' => ['required', 'max:100', 'unique:navbars,name'],
+        $subnavbar = SubNavBar::findOrFail($id);
+        $subnavbar->fill($request->validate([
+            'category_id' => 'required',
+            'name' => ['required', 'max:200', 'unique:sub_nav_bars,name,'.$id],
             'slug' => ['required', 'max:200'],
             'status' => ['required'],
         ]));
 
-        $navbar->slug = Str::slug($request->slug);
-        $navbar->save();
-        return redirect()->route('change.navbar')->with('status', 'navbar category updated successfully');
+        $subnavbar->slug = Str::slug($request->slug);
+        $subnavbar->save();
+        return redirect()->route('change.subnavbar')->with('status', 'Sub-category for NavBar updated successfully','');
 
     }
 
@@ -83,9 +83,9 @@ class SubnavbarController extends Controller
      */
     public function destroy(string $id)
     {
-        $navbar = Navbar::findOrFail($id);
-        $navbar->delete();
-        return redirect()->route('change.navbar')->with('status','Navbar Category deleted successfully');
+        $subnavbar = Navbar::findOrFail($id);
+        $subnavbar->delete();
+        return redirect()->route('change.subnavbar')->with('status','Sub-category for NavBar deleted successfully');
 
     }
 }

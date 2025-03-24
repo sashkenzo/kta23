@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Navbar;
+use App\Models\SubNavBar;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -25,15 +26,18 @@ class NavbarDataTable extends DataTable
             ->addColumn('action', function($query){
                 return $editBtn="<a href='".route('change.navbar.edit',$query->id)."' class='btn btn-primary btn-sm mr-2'><svg width='16' height ='16' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'><path d='M15.7279 9.57627L14.3137 8.16206L5 17.4758V18.89H6.41421L15.7279 9.57627ZM17.1421 8.16206L18.5563 6.74785L17.1421 5.33363L15.7279 6.74785L17.1421 8.16206ZM7.24264 20.89H3V16.6473L16.435 3.21231C16.8256 2.82179 17.4587 2.82179 17.8492 3.21231L20.6777 6.04074C21.0682 6.43126 21.0682 7.06443 20.6777 7.45495L7.24264 20.89Z'></path></svg></a>";
             })
+            ->addColumn('SubCategorys', function($query){
+                return $count= SubNavBar::where('navbar_id',$query->id)->count();
+            })
 
-            ->addColumn('active', function($query){
+            ->addColumn('status', function($query){
                 if($query->status){
-                    return $status ="<button class='btn btn-success'>active</button>";
+                    return $status ="<label class='btn btn-success'>active</label>";
                 }else{
-                    return $status ="<button class='btn btn-danger'>inactive</button>";
+                    return $status ="<label class='btn btn-danger'>inactive</label>";
                 }
             })
-            ->rawColumns(['icon','action','active'])
+            ->rawColumns(['action','status'])
             ->setRowId('id');
     }
 
@@ -56,7 +60,7 @@ class NavbarDataTable extends DataTable
                     ->setTableId('navbar-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->orderBy(1)
+                    ->orderBy(0)
                     ->selectStyleSingle()
                     ->buttons([
                         Button::make('excel'),
@@ -78,6 +82,7 @@ class NavbarDataTable extends DataTable
             Column::make('name'),
             Column::make('slug'),
             Column::make('status'),
+            Column::make('SubCategorys'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

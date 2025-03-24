@@ -14,25 +14,38 @@
                     <li class="nav-item dropdown">
 
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            Manage web items
+                            Manage Homepage Items
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">LoginBar</a></li>
+                            <li><a class="dropdown-item" href="#">LoginBar !done</a></li>
 
-                            <li><a class="dropdown-item" href="{{route('change.navbar')}}">NavBar</a></li>
-
-                            <li><a class="dropdown-item" href="{{route('change.subnavbar')}}">SubNavBar</a></li>
-
-                            <li><a class="dropdown-item" href="{{route('change.carousel')}}">Carousel</a></li>
+                            <li><a class="dropdown-item" href="{{route('change.navbar')}}">Categorys for navigation bar</a></li>
+                            <li><a class="dropdown-item" href="{{route('change.subnavbar')}}">Subcategorys for navigation bar</a></li>
+                            <li><a class="dropdown-item" href="{{route('change.bannercarousel')}}">Carousel banner</a></li>
 
                             <li><a class="dropdown-item" href="{{route('change.banner')}}">Banner</a></li>
 
-                            <li><a class="dropdown-item" href="#">Cards</a></li>
+                            <li><a class="dropdown-item" href="#">Cards !done</a></li>
 
-                            <li><a class="dropdown-item" href="#">Footer</a></li>
+                            <li><a class="dropdown-item" href="#">Footer !done</a></li>
                         </ul>
                     </li>
                 </ul>
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item dropdown">
+
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                Manage Product Items
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Product list</a></li>
+                                <li><a class="dropdown-item" href="#">Change Category Name</a></li>
+                                <li><a class="dropdown-item" href="#">Change Sub-Category Name</a></li>
+                                <li><a class="dropdown-item" href="#">Change Brand Name</a></li>
+                                <li><a class="dropdown-item" href="#">Add Product to Home</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                 @endif
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 border-top mt-2">
                 <div class="nav-item dropdown">

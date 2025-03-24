@@ -36,8 +36,8 @@
                         <div class="form-group">
                             <label>Status : {{$navbar->status}}</label>
                             <select class="form-control" name="status">
-                                <option value="1">Active</option>
-                                <option value="0">Inactive</option>
+                                <option {{$navbar->status == 1 ? 'selected': ''}}value='1'>1</option>
+                                <option {{$navbar->status == 0 ? 'selected': ''}}value='0'>0</option>
                             </select>
                         </div>
                     </div>

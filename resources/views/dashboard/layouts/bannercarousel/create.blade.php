@@ -12,9 +12,9 @@
             @endif
             <div class="card">
                 <div class="card-header">
-                    <h4>New Carousel</h4>
+                    <h4>New Banner-Carousel</h4>
                 </div>
-                <form action="{{route('change.carousel.store')}}" method="POST" enctype="multipart/form-data">
+                <form action="{{route('change.bannercarousel.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                 <div class="card-body">
                         <div class="form-group">
@@ -32,24 +32,10 @@
                             @endif
                         </div>
                         <div class="form-group">
-                            <label>Content</label>
-                            <input type="text" class="form-control" name="content">
-                            @if($errors->has('content'))
-                                <code>{{$errors->first('content')}}</code>
-                            @endif
-                        </div>
-                        <div class="form-group">
                             <label>Button Url</label>
                             <input type="text" class="form-control" name="button_url">
-                            @if($errors->has('price'))
+                            @if($errors->has('button_url'))
                                 <code>{{$errors->first('button_url')}}</code>
-                            @endif
-                        </div>
-                        <div class="form-group">
-                            <label>Button Url text</label>
-                            <input type="text" class="form-control" name="button_url_text">
-                            @if($errors->has('button_url_text'))
-                                <code>{{$errors->first('button_url_text')}}</code>
                             @endif
                         </div>
                     <div class="form-group">
@@ -61,7 +47,7 @@
                     </div>
                     <div class="form-group">
                         <label>Status</label>
-                        <select class="form-control " name="status">
+                        <select class="form-control" name="status">
                             <option value="1">Active</option>
                             <option value="0">Inactive</option>
                         </select>
@@ -70,7 +56,7 @@
 
                 </div>
                 <div class="card-footer">
-                    <a class="btn btn-outline-dark" href="{{route('change.carousel')}}">Back</a>
+                    <a class="btn btn-outline-dark" href="{{route('change.bannercarousel')}}">Back</a>
 
                     <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#create-new-line">
                         Create

@@ -33,9 +33,9 @@ class BannerDataTable extends DataTable
             })
             ->addColumn('status', function($query){
                 if($query->status){
-                    return $status ="<button class='btn btn-success'>active</button>";
+                    return $status ="<label class='btn btn-success'>active</label>";
                 }else{
-                    return $status ="<button class='btn btn-danger'>inactive</button>";
+                    return $status ="<label class='btn btn-danger'>inactive</label>";
                 }
             })
             ->rawColumns(['image','action','status']);
@@ -61,7 +61,7 @@ class BannerDataTable extends DataTable
                     ->setTableId('banner-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->orderBy(1)
+                    ->orderBy(0)
                     ->selectStyleSingle()
                     ->buttons([
                         Button::make('excel'),

@@ -14,30 +14,38 @@
                 <div class="card-header">
                     <h4>edit navbar category</h4>
                 </div>
-                <form action="{{route('change.navbar.update',$navbar->id)}}" method="POST" enctype="multipart/form-data" id="update">
+                <form action="{{route('change.subnavbar.update',$subnavbar->id)}}" method="POST" enctype="multipart/form-data" id="update">
                     @csrf
                     @method('PUT')
                 <div class="card-body">
                     <div class="card-body">
+                            <div class="form-group">
+                                <label>Parent Category : {{$subnavbar->category->name}}</label>
+                                <select class="form-select" id="inputGroupSelect01" name="category_id">
+                                    @foreach($navbars as $navbar)
+                                        <option {{$navbar->id == $subnavbar->catefory_id ? 'selected':''}}value={{$navbar->id}}>{{$navbar->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         <div class="form-group">
                             <label>Name</label>
-                            <input type="text" class="form-control" name="name" value="{{$navbar->name}}">
+                            <input type="text" class="form-control" name="name" value="{{$subnavbar->name}}">
                             @if($errors->has('name'))
                                 <code>{{$errors->first('name')}}</code>
                             @endif
                         </div>
                         <div class="form-group">
                             <label>slug</label>
-                            <input type="text" class="form-control" name="slug" value="{{$navbar->slug}}">
+                            <input type="text" class="form-control" name="slug" value="{{$subnavbar->slug}}">
                             @if($errors->has('slug'))
                                 <code>{{$errors->first('slug')}}</code>
                             @endif
                         </div>
                         <div class="form-group">
-                            <label>Status : {{$navbar->status}}</label>
+                            <label>Status : {{$subnavbar->status}}</label>
                             <select class="form-control" name="status">
-                                <option value="1">Active</option>
-                                <option value="0">Inactive</option>
+                                <option {{$subnavbar->status == 1 ? 'selected': ''}} value="1">1</option>
+                                <option {{$subnavbar->status == 0 ? 'selected': ''}} value="0">0</option>
                             </select>
                         </div>
                     </div>

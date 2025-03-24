@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Change;
 use App\DataTables\NavbarDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Navbar;
+use App\Models\SubNavBar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -31,10 +32,8 @@ class NavbarController extends Controller
         $navbar->fill($request->validate([
             'name'=>['required','max:100','unique:navbars,name'],
             'slug'=>['required','max:200'],
-            'icon'=>['nullable','max:2048'],
             'status'=>['required'],
         ]));
-        $navbar->icon = substr($navbar->icon, 0,5).'width="24" height ="24" '.substr($navbar->icon, 5,null);
         $navbar->slug=Str::slug($request->slug);
         $navbar->save();
 
@@ -68,14 +67,14 @@ class NavbarController extends Controller
         $oldIcon = $navbar->icon;
 
         $navbar->fill($request->validate([
-            'name' => ['required', 'max:100', 'unique:navbars,name'],
+            'name' => ['required', 'max:100', 'unique:navbars,name,'.$id],
             'slug' => ['required', 'max:200'],
             'status' => ['required'],
         ]));
 
         $navbar->slug = Str::slug($request->slug);
         $navbar->save();
-        return redirect()->route('change.navbar')->with('status', 'navbar category updated successfully');
+        return redirect()->route('change.navbar')->with('status', 'navbar category updated successfully')->with('success','success');
 
     }
 
@@ -85,8 +84,12 @@ class NavbarController extends Controller
     public function destroy(string $id)
     {
         $navbar = Navbar::findOrFail($id);
-        $navbar->delete();
-        return redirect()->route('change.navbar')->with('status','Navbar Category deleted successfully');
-
+        $subnavbars = SubNavBar::where('category_id',$id)->count();
+        if($subnavbars > 0 ){
+            return redirect()->route('change.navbar')->with('status','Cant delete element. It has sub categorys')->with('success','danger');
+        }else{
+            $navbar->delete();
+            return redirect()->route('change.navbar')->with('status','Navbar Category deleted successfully')->with('success','success');
+        }
     }
 }

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Change;
 use App\DataTables\BannerDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
-use App\Models\Carousel;
+use App\Models\BannerCarousel;
 use App\Traits\imageUploadTrait;
 use Illuminate\Http\Request;
 

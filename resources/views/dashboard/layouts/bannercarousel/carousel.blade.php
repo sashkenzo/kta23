@@ -1,36 +1,24 @@
 <div class="container">
     <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
         <div class="carousel-indicators">
-                @foreach($carousels as $carousel)
-                    @if($carousels[0] == $carousel)
-                        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide {{$carousel->serial}}"></button>
+                @foreach($bannercarousels as $bannercarousel)
+                    @if($bannercarousels[0] == $bannercarousel)
+                        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide {{$bannercarousel->serial}}"></button>
                     @else
-                        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="{{$carousel->serial-1}}" aria-label="Slide{{$carousel->serial}}"></button>            @endif
+                        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="{{$bannercarousel->serial-1}}" aria-label="Slide{{$bannercarousel->serial}}"></button>            @endif
               @endforeach
         </div>
         <div class="carousel-inner">
-                @foreach($carousels as $carousel)
-                    @if($carousels[0] == $carousel)
+                @foreach($bannercarousels as $bannercarousel)
+                    @if($bannercarousels[0] == $bannercarousel)
                     <div class="carousel-item active">
-                        <img class="img rounded-4" style="width: 100%; height: 100%" src="{{$carousel->image}}" alt="first pic of carousel">
-                            <div class="container ">
-                                <div class="carousel-caption text-start">
-                                <h1>{{$carousel->name}}</h1>
-                                <p class="opacity-75">{{$carousel->content}}</p>
-                                <p><a class="btn btn-lg btn-primary" href="{{$carousel->button_url}}">{{$carousel->button_url_text}}</a></p>
-                                </div>
-                            </div>
+                        <a href="{{$bannercarousel->button_url}}">
+                        <img class="img rounded-4" style="width: 100%; height: 100%" src="{{$bannercarousel->image}}" alt="first pic of banner-carousel"></a>
                            </div>
                     @else
                     <div class="carousel-item">
-                        <img class="img rounded-4" style=" width: 100%; height: 100%" src="{{$carousel->image}}" alt="pics of carousel">
-                            <div class="container">
-                                <div class="carousel-caption text-start">
-                                <h1>{{$carousel->name}}</h1>
-                                <p class="opacity-75">{{$carousel->content}}</p>
-                                <p><a class="btn btn-lg btn-primary" href="{{$carousel->button_url}}">{{$carousel->button_url_text}}</a></p>
-                                </div>
-                            </div>
+                        <a href="{{$bannercarousel->button_url}}">
+                        <img class="img rounded-4" style=" width: 100%; height: 100%" src="{{$bannercarousel->image}}" alt="pics of banner-carousel"></a>
                            </div>
                 @endif
             @endforeach

@@ -1,11 +1,11 @@
 <?php
-use App\Http\Controllers\Change\CarouselController;
+use App\Http\Controllers\Change\Banner2CarouselController;
 use App\Http\Controllers\Change\CardsController;
 use App\Http\Controllers\Change\FooterController;
 use App\Http\Controllers\Change\LoginbarController;
 use App\Http\Controllers\Change\BannerController;
 use App\Http\Controllers\Change\NavbarController;
-use App\Http\Controllers\Change\SubnavbarController;
+use App\Http\Controllers\Change\SubNavBarController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -19,12 +19,12 @@ use Illuminate\Support\Facades\Route;
 
 // change carousel form //
 
-Route::get('/carousel', [CarouselController::class, 'index'])->name('carousel');
-Route::get('/carousel/new', [CarouselController::class, 'create'])->name('carousel.create');
-Route::get('/carousel/{id}', [CarouselController::class, 'edit'])->name('carousel.edit');
-Route::post('/carousel', [CarouselController::class, 'store'])->name('carousel.store');
-Route::put('/carousel/{id}', [CarouselController::class, 'update'])->name('carousel.update');
-Route::delete('/carousel/{id}', [CarouselController::class, 'destroy'])->name('carousel.delete');
+Route::get('/bannercarousel', [Banner2CarouselController::class, 'index'])->name('bannercarousel');
+Route::get('/bannercarousel/new', [Banner2CarouselController::class, 'create'])->name('bannercarousel.create');
+Route::get('/bannercarousel/{id}', [Banner2CarouselController::class, 'edit'])->name('bannercarousel.edit');
+Route::post('/bannercarousel', [Banner2CarouselController::class, 'store'])->name('bannercarousel.store');
+Route::put('/bannercarousel/{id}', [Banner2CarouselController::class, 'update'])->name('bannercarousel.update');
+Route::delete('/bannercarousel/{id}', [Banner2CarouselController::class, 'destroy'])->name('bannercarousel.delete');
 
 // change Banner form //
 
@@ -73,9 +73,9 @@ Route::delete('/navbar/{id}', [NavbarController::class, 'destroy'])->name('navba
 
 // change subNavBar form //
 
-Route::get('/subnavbar', [SubnavbarController::class, 'index'])->name('subnavbar');
-Route::get('/subnavbar/new', [SubnavbarController::class, 'create'])->name('subnavbar.create');
-Route::get('/subnavbar/{id}', [SubnavbarController::class, 'edit'])->name('subnavbar.edit');
-Route::post('/subnavbar', [SubnavbarController::class, 'store'])->name('subnavbar.store');
-Route::put('/subnavbar/{id}', [SubnavbarController::class, 'update'])->name('subnavbar.update');
-Route::delete('/subnavbar/{id}', [SubnavbarController::class, 'destroy'])->name('subnavbar.delete');
+Route::get('/subnavbar', [SubNavBarController::class, 'index'])->name('subnavbar');
+Route::get('/subnavbar/new', [SubNavBarController::class, 'create'])->name('subnavbar.create');
+Route::get('/subnavbar/{id}', [SubNavBarController::class, 'edit'])->name('subnavbar.edit');
+Route::post('/subnavbar', [SubNavBarController::class, 'store'])->name('subnavbar.store');
+Route::put('/subnavbar/{id}', [SubNavBarController::class, 'update'])->name('subnavbar.update');
+Route::delete('/subnavbar/{id}', [SubNavBarController::class, 'destroy'])->name('subnavbar.delete');
