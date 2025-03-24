@@ -12,7 +12,7 @@
                 @foreach($carousels as $carousel)
                     @if($carousels[0] == $carousel)
                     <div class="carousel-item active">
-                        <img class="img-fluid rounded-4" style="width: 100%; height: 100%" src="{{$carousel->image}}" alt="first pic of carousel">
+                        <img class="img rounded-4" style="width: 100%; height: 100%" src="{{$carousel->image}}" alt="first pic of carousel">
                             <div class="container ">
                                 <div class="carousel-caption text-start">
                                 <h1>{{$carousel->name}}</h1>
@@ -23,7 +23,7 @@
                            </div>
                     @else
                     <div class="carousel-item">
-                        <img class="img-fluid rounded-4" style=" width: 100%; height: 100%" src="{{$carousel->image}}" alt="pics of carousel">
+                        <img class="img rounded-4" style=" width: 100%; height: 100%" src="{{$carousel->image}}" alt="pics of carousel">
                             <div class="container">
                                 <div class="carousel-caption text-start">
                                 <h1>{{$carousel->name}}</h1>
