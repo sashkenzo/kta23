@@ -12,6 +12,8 @@ class Navbar extends Model
         'name',
         'slug',
         'status',
+        'top',
+        'bottom'
     ];
     public function subcategorys(){
         return $this->hasMany(SubNavBar::class);}

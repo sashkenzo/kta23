@@ -1,14 +1,15 @@
 @extends('layouts.master')
 
 @section('content')
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+
         <div class="container align-items-center mt-4">
         <div class="card">
             <div class="card-header">
                 <h4>Login</h4>
             </div>
             <div class="card-body">
+                <form method="POST" action="{{ route('login') }}" id="login">
+                    @csrf
                         <div class="row mb-3">
                             <div class="form-group col-md-3">
                                 <label for="email" class="col-form-label">Email</label>
@@ -32,11 +33,14 @@
                                 @endif
                             </div>
                         </div>
-                    <button style="float: right;" type="submit" class="btn btn-primary ">Sign in</button>
+                    <button style="float: right;" type="submit" class="btn btn-primary m-2">Sign in</button>
+                </form>
+                    <a href="{{ route('register') }}" style="float: right;" class="btn btn-outline-primary m-2">Register</a>
+            <!----TODO add a forgot password backend----->
+                    <a href="#" style="float: right;" type="submit" class="btn btn-outline-warning m-2">Forgot password</a>
                 </div>
             </div>
         </div>
-    </form>
-    @include('auth.register')
+
 @endsection
 

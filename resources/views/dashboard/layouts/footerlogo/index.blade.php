@@ -1,6 +1,6 @@
 @extends('dashboard.components.master')
 @section('page')
-<h1 class="h2">Footer</h1>
+<h1 class="h2">Footer Logo</h1>
 @endsection
 @section('section')
     <div class="row">
@@ -14,7 +14,7 @@
                 <div class="card-header">
                     <div class="row">
                     <div class="col-3 col-md-3 col-lg-3">
-                        <a class="btn btn-outline-success" href="{{route('change.footer.create')}}">Create</a>
+                        <a class="btn btn-outline-success" href="{{route('change.footerlogo.create')}}">Create</a>
                     </div>
                     <div class="col-9 col-md-9 col-lg-9">
                         <label>Will only display latest footer with status "active"</label>

@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('navbars', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->boolean('top');
+            $table->boolean('bottom');
             $table->string('slug');
             $table->boolean('status');
             $table->timestamps();

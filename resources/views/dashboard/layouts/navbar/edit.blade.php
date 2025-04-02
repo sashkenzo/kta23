@@ -1,6 +1,6 @@
 @extends('dashboard.components.master')
 @section('page')
-<h1 class="h2">Edit item for Navbar</h1>
+<h1 class="h2">Edit Navigation item</h1>
 @endsection
 @section('section')
     <div class="row">
@@ -12,39 +12,46 @@
             @endif
             <div class="card">
                 <div class="card-header">
-                    <h4>edit navbar category</h4>
+                    <h4>Edit</h4>
                 </div>
-                <form action="{{route('change.navbar.update',$navbar->id)}}" method="POST" enctype="multipart/form-data" id="update">
+                <form action="{{route('change.navs.update',$nav->id)}}" method="POST" enctype="multipart/form-data" id="update">
                     @csrf
                     @method('PUT')
                 <div class="card-body">
                     <div class="card-body">
                         <div class="form-group">
                             <label>Name</label>
-                            <input type="text" class="form-control" name="name" value="{{$navbar->name}}">
+                            <input type="text" class="form-control" name="name" value="{{$nav->name}}">
                             @if($errors->has('name'))
                                 <code>{{$errors->first('name')}}</code>
                             @endif
                         </div>
                         <div class="form-group">
-                            <label>slug</label>
-                            <input type="text" class="form-control" name="slug" value="{{$navbar->slug}}">
-                            @if($errors->has('slug'))
-                                <code>{{$errors->first('slug')}}</code>
-                            @endif
+                            <label>Show on the Top Navigation | Current : {{$nav->top == 1 ? 'Active': 'Inactive'}}</label>
+                            <select class="form-control" name="top">
+                                <option value="1">Active</option>
+                                <option value="0">Inactive</option>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label>Status : {{$navbar->status}}</label>
+                            <label>Show in the Footer Navigation | Current : {{$nav->bottom == 1 ? 'Active': 'Inactive'}}</label>
+                            <select class="form-control" name="bottom">
+                                <option value="1">Active</option>
+                                <option value="0">Inactive</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Status | Current : {{$nav->status == 1 ? 'Active': 'Inactive'}}</label>
                             <select class="form-control" name="status">
-                                <option {{$navbar->status == 1 ? 'selected': ''}}value='1'>1</option>
-                                <option {{$navbar->status == 0 ? 'selected': ''}}value='0'>0</option>
+                                <option value='1'>Active</option>
+                                <option value='0'>Inactive</option>
                             </select>
                         </div>
                     </div>
                 </div>
                 </form>
                     <div class="card-footer">
-                        <a class="btn btn-outline-dark" href="{{route('change.navbar')}}">Back</a>
+                        <a class="btn btn-outline-dark" href="{{route('change.navs')}}">Back</a>
                         <button form="delete" type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete-line">
                         Delete
                     </button>
@@ -83,7 +90,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
-                                    <form action="{{route('change.navbar.delete',$navbar->id)}}" method="POST" id="delete">
+                                    <form action="{{route('change.navs.delete',$nav->id)}}" method="POST" id="delete">
                                         @csrf
                                         @method('DELETE')
                                     <button form="delete" type="submit" class="btn btn-outline-success">Accept</button>

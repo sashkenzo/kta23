@@ -27,15 +27,16 @@ class NavbarController extends Controller
      */
     public function store(Request $request)
     {
-        $navbar = new Navbar();
+        $nav = new Navbar();
 
-        $navbar->fill($request->validate([
-            'name'=>['required','max:100','unique:navbars,name'],
-            'slug'=>['required','max:200'],
+        $nav->fill($request->validate([
+            'name'=>['required','max:200','unique:navbars,name'],
+            'top' => ['required'],
+            'bottom' => ['required'],
             'status'=>['required'],
         ]));
-        $navbar->slug=Str::slug($request->slug);
-        $navbar->save();
+        $nav->slug=Str::slug($nav->name);
+        $nav->save();
 
         return redirect()->route('change.navbar')->with('status','Carousel created successfully');
     }
@@ -53,8 +54,8 @@ class NavbarController extends Controller
      */
     public function edit(string $id)
     {
-        $navbar = Navbar::findOrFail($id);
-        return view('dashboard.layouts.navbar.edit',compact('navbar'));
+        $nav = Navbar::findOrFail($id);
+        return view('dashboard.layouts.navbar.edit',compact('nav'));
     }
 
     /**
@@ -62,19 +63,17 @@ class NavbarController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $navbar = Navbar::findOrFail($id);
-
-        $oldIcon = $navbar->icon;
-
-        $navbar->fill($request->validate([
-            'name' => ['required', 'max:100', 'unique:navbars,name,'.$id],
-            'slug' => ['required', 'max:200'],
-            'status' => ['required'],
+        $nav= Navbar::findOrFail($id);
+        $nav->fill($request->validate([
+            'name' => ['required', 'max:200', 'unique:navbars,name,'.$id],
+            'top' => ['required'],
+            'bottom' => ['required'],
+            'status'=>['required'],
         ]));
 
-        $navbar->slug = Str::slug($request->slug);
-        $navbar->save();
-        return redirect()->route('change.navbar')->with('status', 'navbar category updated successfully')->with('success','success');
+        $nav->slug = Str::slug($nav->name);
+        $nav->save();
+        return redirect()->route('change.navs')->with('status', 'navbar category updated successfully')->with('success','success');
 
     }
 
@@ -83,13 +82,13 @@ class NavbarController extends Controller
      */
     public function destroy(string $id)
     {
-        $navbar = Navbar::findOrFail($id);
-        $subnavbars = SubNavBar::where('category_id',$id)->count();
-        if($subnavbars > 0 ){
-            return redirect()->route('change.navbar')->with('status','Cant delete element. It has sub categorys')->with('success','danger');
+        $nav = Navbar::findOrFail($id);
+        $subnavs = SubNavBar::where('navbar_id',$id)->count();
+        if($subnavs > 0 ){
+            return redirect()->route('change.navs')->with('status','Cant delete element. It has sub categorys')->with('success','danger');
         }else{
-            $navbar->delete();
-            return redirect()->route('change.navbar')->with('status','Navbar Category deleted successfully')->with('success','success');
+            $nav->delete();
+            return redirect()->route('change.navs')->with('status','Navbar Category deleted successfully')->with('success','success');
         }
     }
 }

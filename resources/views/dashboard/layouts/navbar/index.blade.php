@@ -12,7 +12,7 @@
             @endif
             <div class="card">
                 <div class="card-header">
-                    <a class="btn btn-outline-success" href="{{route('change.navbar.create')}}">Create</a>
+                    <a class="btn btn-outline-success" href="{{route('change.navs.create')}}">Create</a>
                 </div>
                 <div class="card-body">
                     {{$dataTable->table()}}

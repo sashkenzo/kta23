@@ -2,11 +2,13 @@
 use App\Http\Controllers\Change\Banner2CarouselController;
 use App\Http\Controllers\Change\CardsController;
 use App\Http\Controllers\Change\FooterController;
+use App\Http\Controllers\Change\FooterLogoController;
+use App\Http\Controllers\Change\FooterNavigationController;
 use App\Http\Controllers\Change\LoginbarController;
 use App\Http\Controllers\Change\BannerController;
 use App\Http\Controllers\Change\NavbarController;
 use App\Http\Controllers\Change\SubNavBarController;
-
+use App\Http\Controllers\Change\FooterSubNavigationController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -64,18 +66,27 @@ Route::delete('/loginbar/{id}', [LoginbarController::class, 'destroy'])->name('l
 
 // change navBar form //
 
-Route::get('/navbar', [NavbarController::class, 'index'])->name('navbar');
-Route::get('/navbar/new', [NavbarController::class, 'create'])->name('navbar.create');
-Route::get('/navbar/{id}', [NavbarController::class, 'edit'])->name('navbar.edit');
-Route::post('/navbar', [NavbarController::class, 'store'])->name('navbar.store');
-Route::put('/navbar/{id}', [NavbarController::class, 'update'])->name('navbar.update');
-Route::delete('/navbar/{id}', [NavbarController::class, 'destroy'])->name('navbar.delete');
+Route::get('/navs', [NavbarController::class, 'index'])->name('navs');
+Route::get('/navs/new', [NavbarController::class, 'create'])->name('navs.create');
+Route::get('/navs/{id}', [NavbarController::class, 'edit'])->name('navs.edit');
+Route::post('/navs', [NavbarController::class, 'store'])->name('navs.store');
+Route::put('/navs/{id}', [NavbarController::class, 'update'])->name('navs.update');
+Route::delete('/navs/{id}', [NavbarController::class, 'destroy'])->name('navs.delete');
 
 // change subNavBar form //
 
-Route::get('/subnavbar', [SubNavBarController::class, 'index'])->name('subnavbar');
-Route::get('/subnavbar/new', [SubNavBarController::class, 'create'])->name('subnavbar.create');
-Route::get('/subnavbar/{id}', [SubNavBarController::class, 'edit'])->name('subnavbar.edit');
-Route::post('/subnavbar', [SubNavBarController::class, 'store'])->name('subnavbar.store');
-Route::put('/subnavbar/{id}', [SubNavBarController::class, 'update'])->name('subnavbar.update');
-Route::delete('/subnavbar/{id}', [SubNavBarController::class, 'destroy'])->name('subnavbar.delete');
+Route::get('/subnavs', [SubNavBarController::class, 'index'])->name('subnavs');
+Route::get('/subnavs/new', [SubNavBarController::class, 'create'])->name('subnavs.create');
+Route::get('/subnavs/{id}', [SubNavBarController::class, 'edit'])->name('subnavs.edit');
+Route::post('/subnavs', [SubNavBarController::class, 'store'])->name('subnavs.store');
+Route::put('/subnavs/{id}', [SubNavBarController::class, 'update'])->name('subnavs.update');
+Route::delete('/subnavs/{id}', [SubNavBarController::class, 'destroy'])->name('subnavs.delete');
+
+// change FooterLogo form //
+
+Route::get('/footerlogo', [FooterLogoController::class, 'index'])->name('footerlogo');
+Route::get('/footerlogo/new', [FooterLogoController::class, 'create'])->name('footerlogo.create');
+Route::get('/footerlogo/{id}', [FooterLogoController::class, 'edit'])->name('footerlogo.edit');
+Route::post('/footerlogo', [FooterLogoController::class, 'store'])->name('footerlogo.store');
+Route::put('/footerlogo/{id}', [FooterLogoController::class, 'update'])->name('footerlogo.update');
+Route::delete('/footerlogo/{id}', [FooterLogoController::class, 'destroy'])->name('footerlogo.delete');

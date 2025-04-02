@@ -5,7 +5,7 @@
 
 @extends('dashboard.components.master')
 @section('page')
-<h1 class="h2">Navbar</h1>
+<h1 class="h2">New item for footer logo</h1>
 @endsection
 @section('section')
     <div class="row">
@@ -17,11 +17,18 @@
             @endif
                 <div class="card">
                     <div class="card-header">
-                        <h4>New category in navbar</h4>
+                        <h4>New footer logo</h4>
                     </div>
-                    <form action="{{route('change.footer.store')}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('change.footerlogo.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="card-body">
+                            <div class="form-group">
+                                <label>Footer Logo</label>
+                                <input type="file" class="form-control" name="image">
+                                @if($errors->has('image'))
+                                    <code>{{$errors->first('image')}}</code>
+                                @endif
+                            </div>
                             <div class="form-group">
                                 <label>Name</label>
                                 <input type="text" class="form-control" name="name">
@@ -38,7 +45,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <a class="btn btn-outline-dark" href="{{route('change.footer')}}">Back</a>
+                            <a class="btn btn-outline-dark" href="{{route('change.footerlogo')}}">Back</a>
 
                             <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#create-new-line">
                                 Create

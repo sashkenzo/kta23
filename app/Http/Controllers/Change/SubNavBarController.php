@@ -18,8 +18,8 @@ class SubNavBarController extends Controller
 
     public function create()
     {
-        $navbars = Navbar::all();
-        return view('dashboard.layouts.subnavbar.create',compact('navbars'));
+        $navs = Navbar::all();
+        return view('dashboard.layouts.subnavbar.create',compact('navs'));
     }
 
     /**
@@ -27,18 +27,18 @@ class SubNavBarController extends Controller
      */
     public function store(Request $request)
     {
-        $subnavbar = new SubNavBar();
+        $subnavs = new SubNavBar();
 
-        $subnavbar->fill($request->validate([
-            'category_id' => 'required',
+        $subnavs->fill($request->validate([
+            'navbar_id' => 'required',
             'name'=>['required','max:200','unique:sub_nav_bars,name'],
-            'slug'=>['required','max:200'],
+            'type'=>['required'],
             'status'=>['required'],
         ]));
-        $subnavbar->slug=Str::slug($request->slug);
-        $subnavbar->save();
+        $subnavs->slug=Str::slug($subnavs->name);
+        $subnavs->save();
 
-        return redirect()->route('change.subnavbar')->with('status','Sub-category for navbar created successfully');
+        return redirect()->route('change.subnavs')->with('status','Sub-category for navbar created successfully');
     }
 
     /**
@@ -54,9 +54,9 @@ class SubNavBarController extends Controller
      */
     public function edit(string $id)
     {
-        $navbars = Navbar::all();
-        $subnavbar = SubNavBar::findOrFail($id);
-        return view('dashboard.layouts.subnavbar.edit',compact('subnavbar','navbars'));
+        $navs = Navbar::all();
+        $subnav = SubNavBar::findOrFail($id);
+        return view('dashboard.layouts.subnavbar.edit',compact('subnav','navs'));
     }
 
     /**
@@ -64,17 +64,18 @@ class SubNavBarController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $subnavbar = SubNavBar::findOrFail($id);
-        $subnavbar->fill($request->validate([
-            'category_id' => 'required',
+        $subnavs = SubNavBar::findOrFail($id);
+
+        $subnavs->fill($request->validate([
+            'navbar_id' => 'required',
             'name' => ['required', 'max:200', 'unique:sub_nav_bars,name,'.$id],
-            'slug' => ['required', 'max:200'],
+            'type'=>['required'],
             'status' => ['required'],
         ]));
 
-        $subnavbar->slug = Str::slug($request->slug);
-        $subnavbar->save();
-        return redirect()->route('change.subnavbar')->with('status', 'Sub-category for NavBar updated successfully','');
+        $subnavs->slug = Str::slug($subnavs->name);
+        $subnavs->save();
+        return redirect()->route('change.subnavs')->with('status', 'Sub-category for NavBar updated successfully','');
 
     }
 

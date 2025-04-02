@@ -1,3 +1,9 @@
+@php
+    use App\Models\Banner2Carousel;
+    $bannercarousels = Banner2Carousel::where('status', 1)->latest()->get();
+@endphp
+
+
 <div class="container">
     <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
         <div class="carousel-indicators">
@@ -13,13 +19,16 @@
                     @if($bannercarousels[0] == $bannercarousel)
                     <div class="carousel-item active">
                         <a href="{{$bannercarousel->button_url}}">
-                        <img class="img rounded-4" style="width: 100%; height: 100%" src="{{$bannercarousel->image}}" alt="first pic of banner-carousel"></a>
-                           </div>
+                            <div class="d-flex justify-content-center">
+                        <img class="img rounded-4" style="height:auto; width: auto;" src="{{$bannercarousel->image}}" alt="first pic of banner-carousel"></a>
+                    </div>
+                    </div>
                     @else
                     <div class="carousel-item">
                         <a href="{{$bannercarousel->button_url}}">
-                        <img class="img rounded-4" style=" width: 100%; height: 100%" src="{{$bannercarousel->image}}" alt="pics of banner-carousel"></a>
-                           </div>
+                            <div class="d-flex justify-content-center">
+                        <img class="img rounded-4" style="margin:auto; width: 110%;" src="{{$bannercarousel->image}}" alt="pics of banner-carousel"></a>
+                    </div></div>
                 @endif
             @endforeach
 

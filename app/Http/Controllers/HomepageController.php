@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Banner;
 use App\Models\Banner2Carousel;
+use App\Models\Cards;
+use App\Models\Footer;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -12,11 +14,10 @@ class HomepageController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
-        $bannercarousels = Banner2Carousel::where('status', 1)->orderBy('serial', 'asc')->get();
-        $banners = Banner::where('status', 1)->orderBy('status', 'asc')->get();
-        return view('homepage', compact('bannercarousels', 'banners'));
+        $banners = Banner::where('status', 1)->latest()->get();
+        return view('homepage', compact('banners'));
     }
 
     /**

@@ -1,3 +1,8 @@
+@extends('layouts.master')
+
+@section('content')
+
+
     <form method="POST" action="{{ route('register') }}">
         @csrf
         <div class="container align-items-center mt-4">
@@ -48,3 +53,5 @@
         </div>
         </div>
     </form>
+
+@endsection

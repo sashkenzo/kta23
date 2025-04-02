@@ -1,6 +1,6 @@
 @extends('dashboard.components.master')
 @section('page')
-<h1 class="h2">Edit item for Navbar</h1>
+<h1 class="h2">Edit footer logo</h1>
 @endsection
 @section('section')
     <div class="row">
@@ -12,34 +12,41 @@
             @endif
             <div class="card">
                 <div class="card-header">
-                    <h4>edit navbar category</h4>
+                    <h4>Edit footer logo</h4>
                 </div>
-                <form action="{{route('change.footer.update',$footer->id)}}" method="POST" enctype="multipart/form-data" id="update">
+                <form action="{{route('change.footerlogo.update',$footerlogo->id)}}" method="POST" enctype="multipart/form-data" id="update">
                     @csrf
                     @method('PUT')
                 <div class="card-body">
                     <div class="card-body">
-
+                        <div class="form-group">
+                            <p><img height="100" src="{{asset($footerlogo->image)}}" alt="Preview of a banner"></p>
+                            <label>Banner</label>
+                            <input type="file" class="form-control" name="image">
+                            @if($errors->has('image'))
+                                <code>{{$errors->first('image')}}</code>
+                            @endif
+                        </div>
                         <div class="form-group">
                             <label>Name</label>
-                            <input type="text" class="form-control" name="name" value="{{$footer->name}}">
+                            <input type="text" class="form-control" name="name" value="{{$footerlogo->name}}">
                             @if($errors->has('name'))
                                 <code>{{$errors->first('name')}}</code>
                             @endif
                         </div>
 
                         <div class="form-group">
-                            <label>Status : {{$footer->status}}</label>
+                            <label>Status : {{$footerlogo->status}}</label>
                             <select class="form-control" name="status">
-                                <option {{$footer->status == 1 ? 'selected': ''}} value="1">Active</option>
-                                <option {{$footer->status == 0 ? 'selected': ''}} value="0">Inactive</option>
+                                <option {{$footerlogo->status == 1 ? 'selected': ''}} value="1">Active</option>
+                                <option {{$footerlogo->status == 0 ? 'selected': ''}} value="0">Inactive</option>
                             </select>
                         </div>
                     </div>
                 </div>
                 </form>
                     <div class="card-footer">
-                        <a class="btn btn-outline-dark" href="{{route('change.footer')}}">Back</a>
+                        <a class="btn btn-outline-dark" href="{{route('change.footerlogo')}}">Back</a>
                         <button form="delete" type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete-line">
                         Delete
                     </button>
@@ -78,7 +85,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
-                                    <form action="{{route('change.footer.delete',$footer->id)}}" method="POST" id="delete">
+                                    <form action="{{route('change.footerlogo.delete',$footerlogo->id)}}" method="POST" id="delete">
                                         @csrf
                                         @method('DELETE')
                                     <button form="delete" type="submit" class="btn btn-outline-success">Accept</button>

@@ -1,6 +1,11 @@
+@php
+
+
+@endphp
+
 @extends('dashboard.components.master')
 @section('page')
-<h1 class="h2">Navbar</h1>
+<h1 class="h2">Sub-Category's of Navbar</h1>
 @endsection
 @section('section')
     <div class="row">
@@ -12,23 +17,22 @@
             @endif
                 <div class="card">
                     <div class="card-header">
-                        <h4>New category in navbar</h4>
+                        <h4>New Sub-category</h4>
                     </div>
-                    <form action="{{route('change.subnavbar.store')}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('change.subnavs.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
                                 <div class="input-group mb-3">
-                                    <label class="input-group-text" for="inputGroupSelect01">NavBarCategory</label>
-                                    <select class="form-select" id="inputGroupSelect01" name="category_id">
-                                        @foreach($navbars as $navbar)
-                                            <option value={{$navbar->id}}>{{$navbar->name}}</option>
+                                    <label class="input-group-text" for="inputGroupSelect01">Parent Category</label>
+                                    <select class="form-select" id="inputGroupSelect01" name="navbar_id">
+                                        @foreach($navs as $nav)
+                                            <option value={{$nav->id}}>{{$nav->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
-
-                                @if($errors->has('category_id'))
-                                    <code>{{$errors->first('category_id')}}</code>
+                                @if($errors->has('navbar_id'))
+                                    <code>{{$errors->first('navbar_id')}}</code>
                                 @endif
                             </div>
                             <div class="form-group">
@@ -39,11 +43,12 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label>slug</label>
-                                <input type="text" class="form-control" name="slug">
-                                @if($errors->has('slug'))
-                                    <code>{{$errors->first('slug')}}</code>
-                                @endif
+                                <label>Type of page</label>
+                                <select class="form-control" name="type">
+                                    <option value="blog">Blog</option>
+                                    <option value="product">Product</option>
+                                    <option value="graphic">Graphic</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label>Status</label>
@@ -54,7 +59,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <a class="btn btn-outline-dark" href="{{route('change.navbar')}}">Back</a>
+                            <a class="btn btn-outline-dark" href="{{route('change.subnavs')}}">Back</a>
 
                             <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#create-new-line">
                                 Create

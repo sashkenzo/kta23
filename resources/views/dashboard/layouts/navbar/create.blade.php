@@ -1,6 +1,6 @@
 @extends('dashboard.components.master')
 @section('page')
-<h1 class="h2">Navbar</h1>
+<h1 class="h2">Navigation</h1>
 @endsection
 @section('section')
     <div class="row">
@@ -12,9 +12,9 @@
             @endif
                 <div class="card">
                     <div class="card-header">
-                        <h4>New category in navbar</h4>
+                        <h4>New Navigation item</h4>
                     </div>
-                    <form action="{{route('change.navbar.store')}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('change.navs.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
@@ -25,11 +25,18 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label>slug</label>
-                                <input type="text" class="form-control" name="slug">
-                                @if($errors->has('slug'))
-                                    <code>{{$errors->first('slug')}}</code>
-                                @endif
+                                <label>Show on the Top Navigation</label>
+                                <select class="form-control" name="top">
+                                    <option value="1">Active</option>
+                                    <option value="0">Inactive</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Show in the Footer Navigation</label>
+                                <select class="form-control" name="bottom">
+                                    <option value="1">Active</option>
+                                    <option value="0">Inactive</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label>Status</label>
@@ -40,7 +47,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <a class="btn btn-outline-dark" href="{{route('change.navbar')}}">Back</a>
+                            <a class="btn btn-outline-dark" href="{{route('change.navs')}}">Back</a>
 
                             <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#create-new-line">
                                 Create
