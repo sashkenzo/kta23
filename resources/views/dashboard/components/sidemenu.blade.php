@@ -54,7 +54,9 @@
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     Account</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ url('/dashboard') }}">Dashboard</a></li>
+                            @if(Auth::user()->role=='admin')
+                            <li><a class="dropdown-item" href="{{route('change.users')}}">Change User</a></li>
+                            @endif
                             <li><a class="dropdown-item" href="{{route('profile.edit')}}">Settings</a></li>
                             <form method="POST" action="{{route('logout')}}">
                                 @csrf

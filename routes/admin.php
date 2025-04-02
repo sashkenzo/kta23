@@ -3,14 +3,12 @@ use App\Http\Controllers\Change\Banner2CarouselController;
 use App\Http\Controllers\Change\CardsController;
 use App\Http\Controllers\Change\FooterController;
 use App\Http\Controllers\Change\FooterLogoController;
-use App\Http\Controllers\Change\FooterNavigationController;
 use App\Http\Controllers\Change\LoginbarController;
 use App\Http\Controllers\Change\BannerController;
 use App\Http\Controllers\Change\NavbarController;
 use App\Http\Controllers\Change\SubNavBarController;
-use App\Http\Controllers\Change\FooterSubNavigationController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Change\UsersController;
 
 
 
@@ -90,3 +88,12 @@ Route::get('/footerlogo/{id}', [FooterLogoController::class, 'edit'])->name('foo
 Route::post('/footerlogo', [FooterLogoController::class, 'store'])->name('footerlogo.store');
 Route::put('/footerlogo/{id}', [FooterLogoController::class, 'update'])->name('footerlogo.update');
 Route::delete('/footerlogo/{id}', [FooterLogoController::class, 'destroy'])->name('footerlogo.delete');
+
+// change Users form //
+
+Route::get('/users', [UsersController::class, 'index'])->name('users');
+Route::get('/users/new', [UsersController::class, 'create'])->name('users.create');
+Route::get('/users/{id}', [UsersController::class, 'edit'])->name('users.edit');
+Route::post('/users', [UsersController::class, 'store'])->name('users.store');
+Route::put('/users/{id}', [UsersController::class, 'update'])->name('users.update');
+Route::delete('/users/{id}', [UsersController::class, 'destroy'])->name('users.delete');

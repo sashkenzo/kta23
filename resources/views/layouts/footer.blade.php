@@ -15,7 +15,7 @@ $footernavs=\App\Models\Navbar::where('bottom',1)->where('status', 1)
         <div class="col-12 col-md d-none d-sm-none d-md-block">
             @foreach($footerlogos as $footerlogo)
 
-            <img height="150" width="150" src="{{url($footerlogo->image)}}">
+            <img height="150" width="150" src="{{url($footerlogo->image)}}" alt="footer logo">
 
             @endforeach
         </div>
