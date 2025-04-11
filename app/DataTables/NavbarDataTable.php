@@ -4,6 +4,7 @@ namespace App\DataTables;
 
 use App\Models\Navbar;
 use App\Models\SubNavBar;
+use App\Traits\datatablesTrait;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -15,6 +16,7 @@ use Yajra\DataTables\Services\DataTable;
 
 class NavbarDataTable extends DataTable
 {
+    use datatablesTrait;
     /**
      * Build the DataTable class.
      *
@@ -24,20 +26,16 @@ class NavbarDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function($query){
-                return $editBtn="<a href='".route('change.navs.edit',$query->id)."' class='btn btn-primary btn-sm mr-2'><svg width='16' height ='16' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'><path d='M15.7279 9.57627L14.3137 8.16206L5 17.4758V18.89H6.41421L15.7279 9.57627ZM17.1421 8.16206L18.5563 6.74785L17.1421 5.33363L15.7279 6.74785L17.1421 8.16206ZM7.24264 20.89H3V16.6473L16.435 3.21231C16.8256 2.82179 17.4587 2.82179 17.8492 3.21231L20.6777 6.04074C21.0682 6.43126 21.0682 7.06443 20.6777 7.45495L7.24264 20.89Z'></path></svg></a>";
+                return $this->datatableAction($query,'navs');
             })
             ->addColumn('SubCategorys', function($query){
-                return $count= SubNavBar::where('navbar_id',$query->id)->count();
+                return $this->datatableCountSub($query,SubNavBar::class);
             })
 
             ->addColumn('status', function($query){
-                if($query->status){
-                    return $status ="<label class='btn btn-success'>active</label>";
-                }else{
-                    return $status ="<label class='btn btn-danger'>inactive</label>";
-                }
+                return $this->datatableStatus($query,'navs');
             })
-            ->rawColumns(['action','status'])
+            ->rawColumns(['action','status','SubCategorys'])
             ->setRowId('id');
     }
 

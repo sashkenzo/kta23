@@ -91,4 +91,12 @@ class NavbarController extends Controller
             return redirect()->route('change.navs')->with('status','Navbar Category deleted successfully')->with('success','success');
         }
     }
+    public function changeStatusBtn(Request $request, string $id)
+    {
+        $nav = Navbar::findOrFail($id);
+        $nav->fill($request->validate([
+            'status'=>['required'],]));
+        $nav->save();
+        return redirect()->route('change.navs')->with('status','Navigation id: '.$nav->id.' status was updated successfully')->with('success','success');
+    }
 }

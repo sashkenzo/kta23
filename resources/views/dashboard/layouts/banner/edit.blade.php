@@ -1,6 +1,6 @@
 @extends('dashboard.components.master')
 @section('page')
-<h1 class="h2">Edit item for Carousel</h1>
+<h1 class="h2">Edit item for Banner</h1>
 @endsection
 @section('section')
     <div class="row">
@@ -12,7 +12,7 @@
             @endif
             <div class="card">
                 <div class="card-header">
-                    <h4>New Carousel</h4>
+                    <h4>New Banner</h4>
                 </div>
                 <form action="{{route('change.banner.update',$banner->id)}}" method="POST" enctype="multipart/form-data" id="update">
                     @csrf

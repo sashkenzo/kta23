@@ -98,4 +98,12 @@ class CardsController extends Controller
         return redirect()->route('change.cards')->with('status','A card deleted successfully');
 
     }
+    public function changeStatusBtn(Request $request, string $id)
+    {
+        $cards = Banner::findOrFail($id);
+        $cards->fill($request->validate([
+            'status'=>['required'],]));
+        $cards->save();
+        return redirect()->route('change.cards')->with('status','Card id: '.$cards->id.' status was updated successfully')->with('success','success');
+    }
 }

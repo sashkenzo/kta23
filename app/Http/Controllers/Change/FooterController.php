@@ -73,9 +73,18 @@ class FooterController extends Controller
      */
     public function destroy(string $id)
     {
-        $footer = footer::findOrFail($id);
+        $footer = Footer::findOrFail($id);
         $footer->delete();
         return redirect()->route('change.footer')->with('status','Footer deleted successfully');
 
+    }
+
+    public function changeStatusBtn(Request $request, string $id)
+    {
+        $footer = Footer::findOrFail($id);
+        $footer->fill($request->validate([
+            'status'=>['required'],]));
+        $footer->save();
+        return redirect()->route('change.footer')->with('status','Footer id: '.$footer->id.' status was updated successfully')->with('success','success');
     }
 }

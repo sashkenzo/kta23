@@ -1,6 +1,6 @@
 @extends('dashboard.components.master')
 @section('page')
-<h1 class="h2">New item for Banner</h1>
+<h1 class="h2">New User</h1>
 @endsection
 @section('section')
     <div class="row">
@@ -12,46 +12,47 @@
             @endif
             <div class="card">
                 <div class="card-header">
-                    <h4>New Banner</h4>
+                    <h4>New User</h4>
                 </div>
-                <form action="{{route('change.banner.store')}}" method="POST" enctype="multipart/form-data">
+                <form action="{{route('change.users.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                 <div class="card-body">
-                        <div class="form-group">
-                            <label>Banner</label>
-                            <input type="file" class="form-control" name="image">
-                            @if($errors->has('image'))
-                                <code>{{$errors->first('image')}}</code>
-                            @endif
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" class="form-control" name="name" inputmode="email">
+                        @if($errors->has('name'))
+                            <code>{{$errors->first('name')}}</code>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                    <label>Email</label>
+                        <input type="text" class="form-control" name="email" inputmode="email">
+                        @if($errors->has('email'))
+                            <code>{{$errors->first('email')}}</code>
+                       @endif
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control" name="password" inputmode="email">
+                        @if($errors->has('password'))
+                            <code>{{$errors->first('password')}}</code>
+                        @endif
                         </div>
-                        <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" class="form-control" name="name">
-                            @if($errors->has('name'))
-                                <code>{{$errors->first('name')}}</code>
-                            @endif
-                        </div>
-                        <div class="form-group">
-                            <label>Content</label>
-                            <input type="text" class="form-control" name="content">
-                            @if($errors->has('content'))
-                                <code>{{$errors->first('content')}}</code>
-                            @endif
-                        </div>
-                        <div class="form-group">
-                            <label>Button Url</label>
-                            <input type="text" class="form-control" name="button_url">
-                            @if($errors->has('price'))
-                                <code>{{$errors->first('button_url')}}</code>
-                            @endif
-                        </div>
-                        <div class="form-group">
-                            <label>Button Url text</label>
-                            <input type="text" class="form-control" name="button_url_text">
-                            @if($errors->has('button_url_text'))
-                                <code>{{$errors->first('button_url_text')}}</code>
-                            @endif
-                        </div>
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input type="password" class="form-control" name="password_confirmation" inputmode="email">
+                        @if($errors->has('password_confirmation'))
+                            <code>{{$errors->first('password_confirmation')}}</code>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <label>Role</label>
+                        <select class="form-control " name="role">
+                            <option value="admin">admin</option>
+                            <option value="super">super</option>
+                            <option value="user">user</option>
+                        </select>
+                    </div>
                     <div class="form-group">
                         <label>Status</label>
                         <select class="form-control " name="status">
@@ -59,11 +60,12 @@
                             <option value="0">Inactive</option>
                         </select>
                     </div>
-
+                </div>
+                </form>
 
                 </div>
                 <div class="card-footer">
-                    <a class="btn btn-outline-dark" href="{{route('change.banner')}}">Back</a>
+                    <a class="btn btn-outline-dark" href="{{route('change.users')}}">Back</a>
 
                     <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#create-new-line">
                         Create
