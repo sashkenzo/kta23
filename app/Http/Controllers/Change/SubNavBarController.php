@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Change;
 use App\DataTables\SubNavBarDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Navbar;
-use App\Models\SubNavbar;
+use App\Models\SubNavBar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -44,9 +44,15 @@ class SubNavBarController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $slug)
     {
-        //
+        $subnavs = SubNavBar::where('slug',$slug)->get();
+        if($subnavs[0]->type=='product'){
+            return view('layouts.productsubnav');
+        }
+        if($subnavs[0]->type=='blog'){
+            return view('layouts.blogsubnav');
+        }
     }
 
     /**

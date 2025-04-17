@@ -3,5 +3,17 @@
 <h1 class="h2">Dashboard</h1>
 @endsection
 @section('section')
-hello friend
+    <div class="card">
+        <div class="card-header">
+            Your Inbox
+        </div>
+        <div class="card-body">
+            Messages?
+        </div>
+        <div class="card-footer">
+            Buttons?
+        </div>
+    </div>
+
+
 @endsection

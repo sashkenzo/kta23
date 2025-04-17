@@ -22,6 +22,8 @@ class User extends Authenticatable
         'email',
         'phone',
         'password',
+        'role',
+        'status',
     ];
 
     /**
@@ -46,4 +48,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function productId()
+    {
+        return $this->hasMany(User::class);
+    }
+
+
+
 }

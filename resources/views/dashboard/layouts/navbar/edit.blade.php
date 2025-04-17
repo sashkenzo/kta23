@@ -27,24 +27,24 @@
                             @endif
                         </div>
                         <div class="form-group">
-                            <label>Show on the Top Navigation | Current : {{$nav->top == 1 ? 'Active': 'Inactive'}}</label>
+                            <label>Show on the Top Navigation</label>
                             <select class="form-control" name="top">
-                                <option value="1">Active</option>
-                                <option value="0">Inactive</option>
+                                <option {{$nav->top == 1 ? 'selected': ''}} value='1'>Active</option>
+                                <option {{$nav->top == 0 ? 'selected': ''}} value='0'>Inactive</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Show in the Footer Navigation | Current : {{$nav->bottom == 1 ? 'Active': 'Inactive'}}</label>
+                            <label>Show in the Footer Navigation</label>
                             <select class="form-control" name="bottom">
-                                <option value="1">Active</option>
-                                <option value="0">Inactive</option>
+                                <option {{$nav->bottom == 1 ? 'selected': ''}} value='1'>Active</option>
+                                <option {{$nav->bottom == 0 ? 'selected': ''}} value='0'>Inactive</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Status | Current : {{$nav->status == 1 ? 'Active': 'Inactive'}}</label>
+                            <label>Status</label>
                             <select class="form-control" name="status">
-                                <option value='1'>Active</option>
-                                <option value='0'>Inactive</option>
+                                <option {{$nav->status == 1 ? 'selected': ''}} value='1'>Active</option>
+                                <option {{$nav->status == 0 ? 'selected': ''}} value='0'>Inactive</option>
                             </select>
                         </div>
                     </div>

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('navbars', function (Blueprint $table) {
             $table->id();
+            $table->enum('type',['product', 'blog'])->default('product');
             $table->string('name');
             $table->boolean('top');
             $table->boolean('bottom');

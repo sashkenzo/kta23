@@ -23,7 +23,7 @@ $navs=\App\Models\Navbar::where('top',1)
                 </label>
                 <ul class="dropdown-menu text-center">
                     @foreach($nav->subcategorys as $subnav)
-                        <li><a class="dropdown-item" href="#">{{$subnav->name}}</a></li>
+                        <li><a class="dropdown-item" href="{{url('cat/'.$subnav->slug)}}">{{$subnav->name}}</a></li>
                     @endforeach
 
                 </ul>

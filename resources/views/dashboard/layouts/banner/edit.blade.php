@@ -57,8 +57,8 @@
                     <div class="form-group">
                         <label>Status: {{$banner->status}}</label>
                         <select class="form-control" name="status" >
-                            <option {{$banner->status == 1 ? 'selected': ''}}value='1'>Active</option>
-                            <option {{$banner->status == 0 ? 'selected': ''}}value='0'>inactive</option>
+                            <option {{$banner->status == 1 ? 'selected': ''}} value='1'>Active</option>
+                            <option {{$banner->status == 0 ? 'selected': ''}} value='0'>inactive</option>
                         </select>
                     </div>
                 </div>

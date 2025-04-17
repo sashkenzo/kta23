@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             CardsSeeder::class,
             FooterSeeder::class,
             FooterLogoSeeder::class,
+            ProductSeeder::class,
         ]);
     }
 }

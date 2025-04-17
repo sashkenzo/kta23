@@ -1,6 +1,6 @@
 @extends('dashboard.components.master')
 @section('page')
-<h1 class="h2">Edit item for Carousel</h1>
+<h1 class="h2">Edit User</h1>
 @endsection
 @section('section')
     <div class="row">
@@ -12,59 +12,41 @@
             @endif
             <div class="card">
                 <div class="card-header">
-                    <h4>New Carousel</h4>
+                    <h4>Edit User</h4>
                 </div>
-                <form action="{{route('change.banner.update',$banner->id)}}" method="POST" enctype="multipart/form-data" id="update">
+                <form action="{{route('change.users.update',$users->id)}}" method="POST" enctype="multipart/form-data" id="update">
                     @csrf
                     @method('PUT')
                 <div class="card-body">
                     <div class="form-group">
-                        <p><img height="100" src="{{asset($banner->image)}}" alt="Preview of a banner"></p>
-                        <label>Banner</label>
-                        <input type="file" class="form-control" name="image">
-                        @if($errors->has('image'))
-                            <code>{{$errors->first('image')}}</code>
-                        @endif
+                        <label>Email : {{$users->email}}</label>
                     </div>
                     <div class="form-group">
                         <label>Name</label>
-                        <input type="text" class="form-control" name="name" value="{{$banner->name}}">
+                        <input type="text" class="form-control" name="name" value="{{$users->name}}">
                         @if($errors->has('name'))
                             <code>{{$errors->first('name')}}</code>
                         @endif
                     </div>
                     <div class="form-group">
-                        <label>Content</label>
-                        <input type="text" class="form-control" name="content" value="{{$banner->content}}">
-                        @if($errors->has('content'))
-                            <code>{{$errors->first('content')}}</code>
-                        @endif
+                        <label>Role: {{$users->role}}</label>
+                        <select class="form-control" name="role" >
+                            <option {{$users->role == 'admin' ? 'selected': ''}} value='admin'>Admin</option>
+                            <option {{$users->role == 'super' ? 'selected': ''}} value='super'>Super</option>
+                            <option {{$users->role == 'user' ? 'selected': ''}} value='user'>User</option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label>button url</label>
-                        <input type="text" class="form-control" name="button_url" value="{{$banner->button_url}}">
-                        @if($errors->has('button_url'))
-                            <code>{{$errors->first('button_url')}}</code>
-                        @endif
-                    </div>
-                    <div class="form-group">
-                        <label>Button Url text</label>
-                        <input type="text" class="form-control" name="button_url_text" value="{{$banner->button_url_text}}">
-                        @if($errors->has('button_url_text'))
-                            <code>{{$errors->first('button_url_text')}}</code>
-                        @endif
-                    </div>
-                    <div class="form-group">
-                        <label>Status: {{$banner->status}}</label>
+                        <label>Status: {{$users->status}}</label>
                         <select class="form-control" name="status" >
-                            <option {{$banner->status == 1 ? 'selected': ''}}value='1'>Active</option>
-                            <option {{$banner->status == 0 ? 'selected': ''}}value='0'>inactive</option>
+                            <option {{$users->status == 1 ? 'selected': ''}} value='1'>Active</option>
+                            <option {{$users->status == 0 ? 'selected': ''}} value='0'>inactive</option>
                         </select>
                     </div>
                 </div>
                 </form>
                 <div class="card-footer">
-                    <a class="btn btn-outline-dark" href="{{route('change.banner')}}">Back</a>
+                    <a class="btn btn-outline-dark" href="{{route('change.users')}}">Back</a>
                     <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete-line">
                         Delete
                     </button>
@@ -101,7 +83,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
-                                    <form action="{{route('change.banner.delete',$banner->id)}}" method="POST">
+                                    <form action="{{route('change.users.delete',$users->id)}}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                     <button type="submit" class="btn btn-outline-success">Accept</button>

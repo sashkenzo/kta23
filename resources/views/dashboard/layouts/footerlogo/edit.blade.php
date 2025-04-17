@@ -34,7 +34,13 @@
                                 <code>{{$errors->first('name')}}</code>
                             @endif
                         </div>
-
+                        <div class="form-group">
+                            <label>Link</label>
+                            <input type="text" class="form-control" value="{{$footerlogo->homelink}}" name="homelink">
+                            @if($errors->has('homelink'))
+                                <code>{{$errors->first('homelink')}}</code>
+                            @endif
+                        </div>
                         <div class="form-group">
                             <label>Status : {{$footerlogo->status}}</label>
                             <select class="form-control" name="status">

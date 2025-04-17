@@ -3,7 +3,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    @yield('cfrs')
     <title>Kta23v_app</title>
 
     <!-- Fonts -->

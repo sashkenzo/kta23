@@ -100,7 +100,7 @@ class CardsController extends Controller
     }
     public function changeStatusBtn(Request $request, string $id)
     {
-        $cards = Banner::findOrFail($id);
+        $cards = Cards::findOrFail($id);
         $cards->fill($request->validate([
             'status'=>['required'],]));
         $cards->save();

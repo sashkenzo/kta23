@@ -37,6 +37,13 @@
                                 @endif
                             </div>
                             <div class="form-group">
+                                <label>Link</label>
+                                <input type="text" class="form-control" name="homelink">
+                                @if($errors->has('homelink'))
+                                    <code>{{$errors->first('homelink')}}</code>
+                                @endif
+                            </div>
+                            <div class="form-group">
                                 <label>Status</label>
                                 <select class="form-control" name="status">
                                     <option value="1">Active</option>

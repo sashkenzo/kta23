@@ -61,9 +61,7 @@
                         </select>
                     </div>
                 </div>
-                </form>
 
-                </div>
                 <div class="card-footer">
                     <a class="btn btn-outline-dark" href="{{route('change.users')}}">Back</a>
 
@@ -90,6 +88,6 @@
                 </div>
                 </form>
             </div>
+
         </div>
-    </div>
 @endsection

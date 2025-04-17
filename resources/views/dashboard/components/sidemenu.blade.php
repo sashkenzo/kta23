@@ -19,20 +19,22 @@
                         <ul class="dropdown-menu">
                             <li><label class="mx-3">Navigation</label></li>
                             <li><a class="dropdown-item" href="{{route('change.navs')}}">--> Category's</a></li>
-
                             <li><a class="dropdown-item" href="{{route('change.subnavs')}}">--> Sub-Categorys</a></li>
-                            <li><a class="dropdown-item" href="{{route('change.bannercarousel')}}">Carousel banner</a></li>
-
-                            <li><a class="dropdown-item" href="{{route('change.banner')}}">Banner</a></li>
-
-                            <li><a class="dropdown-item" href="{{route('change.cards')}}">Cards</a></li>
+                            <li><label class="mx-3">Banners</label></li>
+                            <li><a class="dropdown-item" href="{{route('change.bannercarousel')}}">--> Carousel banner</a></li>
+                            <li><a class="dropdown-item" href="{{route('change.banner')}}">--> Banner</a></li>
+                            <li><a class="dropdown-item" href="{{route('change.cards')}}">--> Cards</a></li>
                             <li><label class="mx-3">Footer</label></li>
                             <li><a class="dropdown-item" href="{{route('change.footer')}}">--> Bottom Row</a></li>
                             <li><a class="dropdown-item" href="{{route('change.footerlogo')}}">--> Image</a></li>
+                            <li><label class="mx-3">Users</label></li>
+                            <li><a class="dropdown-item" href="{{route('change.users')}}">--> Users</a></li>
 
                         </ul>
                     </li>
                 </ul>
+                @endif
+                    @if(Auth::user()->role=='admin' or Auth::user()->role=='super')
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item dropdown">
 
@@ -40,23 +42,31 @@
                                 Manage Product Items
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Product list</a></li>
-                                <li><a class="dropdown-item" href="#">Change Category Name</a></li>
-                                <li><a class="dropdown-item" href="#">Change Sub-Category Name</a></li>
-                                <li><a class="dropdown-item" href="#">Change Brand Name</a></li>
+                                <li><a class="dropdown-item" href="#">Blog</a></li>
+                                <li><a class="dropdown-item" href="#">Product</a></li>
                                 <li><a class="dropdown-item" href="#">Add Product to Home</a></li>
                             </ul>
                         </li>
                     </ul>
-                @endif
+                    @endif
+                    @if(Auth::user()->role=='admin' or Auth::user()->role='super')
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <li class="nav-item dropdown">
+
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Menu
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Messages</a></li>
+                                    <li><a class="dropdown-item" href="{{route('product')}}">Your Products</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    @endif
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 border-top mt-2">
-                <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     Account</a>
                         <ul class="dropdown-menu">
-                            @if(Auth::user()->role=='admin')
-                            <li><a class="dropdown-item" href="{{route('change.users')}}">Change User</a></li>
-                            @endif
                             <li><a class="dropdown-item" href="{{route('profile.edit')}}">Settings</a></li>
                             <form method="POST" action="{{route('logout')}}">
                                 @csrf
@@ -64,7 +74,7 @@
                                                 this.closest('form').submit()">Sign Out</a></li>
                             </form>
                         </ul>
-                    </div>
+
                 </ul>
             </div>
         </div>
