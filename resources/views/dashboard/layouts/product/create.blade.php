@@ -94,13 +94,7 @@
                                     <code>{{$errors->first('price')}}</code>
                                 @endif
                             </div>
-                            <div class="form-group">
-                                <label>stock</label>
-                                <input type="number" class="form-control" name="stock" >
-                                @if($errors->has('stock'))
-                                    <code>{{$errors->first('stock')}}</code>
-                                @endif
-                            </div>
+
                             <div class="form-group">
                                 <label>Status</label>
                                 <select class="form-control" name="status">

@@ -16,5 +16,10 @@ class Blog extends Model
         'long_content',
         'subcategory_id',
         'status',
+        'user_id',
     ];
+
+    public function subCategory(){
+        return $this->belongsTo(SubNavBar::class);
+    }
 }

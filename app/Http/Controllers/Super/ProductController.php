@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Super;
 use App\DataTables\ProductDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Traits\controllerTrait;
 use App\Traits\imageUploadTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -12,6 +13,7 @@ use Illuminate\Support\Str;
 class ProductController extends Controller
 {
     use imageUploadTrait;
+    use controllerTrait;
     /**
      * Display a listing of the resource.
      */
@@ -43,7 +45,6 @@ class ProductController extends Controller
             'description' => ['required'],
             'short_description' => ['required'],
             'subcategory_id' => ['required'],
-            'stock' => ['required'],
 
         ]));
 
@@ -108,20 +109,12 @@ class ProductController extends Controller
     public function destroy(string $slug)
     {
         $product = Product::where('slug',$slug)->get();
-        if(public_path($product[0]->image)!=public_path(null)){
-            unlink(public_path($product->image));
-        }
-        if(public_path($product[0]->image_2)!=public_path(null)){
-            unlink(public_path($product->image_2));
-        }
-        if(public_path($product[0]->image_3)!=public_path(null)){
-            unlink(public_path($product->image_3));
-        }
-        if(public_path($product[0]->image_4)!=public_path(null)){
-            unlink(public_path($product->image_4));
-        }
+        $this->deleteImage($product[0], 'image');
+        $this->deleteImage($product[0], 'image_2');
+        $this->deleteImage($product[0], 'image_3');
+        $this->deleteImage($product[0], 'image_4');
         $product[0]->delete();
-        return redirect()->route('product')->with('status','A product deleted successfully');
+        return redirect()->route('product')->with('status','A product deleted successfully')->with('success','success');
 
     }
 

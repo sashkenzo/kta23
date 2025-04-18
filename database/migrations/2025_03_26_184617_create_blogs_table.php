@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('type')->default('blog');
             $table->string('title')->nullable();
+            $table->text('user_id');
             $table->text('content')->nullable();
             $table->text('short_content')->nullable();;
             $table->text('long_content')->nullable();;

@@ -12,44 +12,17 @@
             @endif
                 <div class="card">
                     <div class="card-header">
-                        <h4>New Card</h4>
+                        <h4>New blog</h4>
                     </div>
-                    <form action="{{route('product.store')}}" method="POST" enctype="multipart/form-data">
+                    <form action="
+                        @if(Auth::user()->role=='admin')
+                            {{route('change.blog.store')}}
+                        @else
+                            {{route('mod.blog.store')}}
+                       @endif" method="POST" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="user_id" value="{{Auth::user()->id}}" />
                         <div class="card-body">
-                            <div class="row">
-                            <div class="col-6 form-group">
-                                <label>Image 1</label>
-                                <input type="file" class="form-control" name="image">
-                                @if($errors->has('image'))
-                                    <code>{{$errors->first('image')}}</code>
-                                @endif
-                            </div>
-                            <div class="col-6 form-group">
-                                <label>Image 2</label>
-                                <input type="file" class="form-control" name="image_2">
-                                @if($errors->has('image_2'))
-                                    <code>{{$errors->first('image_2')}}</code>
-                                @endif
-                            </div>
-                            </div>
-                            <div class="row">
-                            <div class="col-6 form-group">
-                                <label>Image 3</label>
-                                <input type="file" class="form-control" name="image_3">
-                                @if($errors->has('image_3'))
-                                    <code>{{$errors->first('image_3')}}</code>
-                                @endif
-                            </div>
-                            <div class="col-6 form-group">
-                                <label>Image 4</label>
-                                <input type="file" class="form-control" name="image_4">
-                                @if($errors->has('image_4'))
-                                    <code>{{$errors->first('image_4')}}</code>
-                                @endif
-                            </div>
-                            </div>
                             <div class="form-group">
                                 <label>Name</label>
                                 <input type="text" class="form-control" name="name">
@@ -58,52 +31,47 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label>Description</label>
-                                <input type="text" class="form-control" name="description">
+                                <label>Blog Title</label>
+                                <input type="text" class="form-control" name="title">
+                                @if($errors->has('title'))
+                                    <code>{{$errors->first('title')}}</code>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <label>Content</label>
+                                <textarea type="text" class="form-control" name="content" rows="4" cols="50"></textarea>
                                 @if($errors->has('description'))
                                     <code>{{$errors->first('description')}}</code>
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label>Short Description</label>
-                                <input type="text" class="form-control" name="short_description">
-                                @if($errors->has('short_description'))
-                                    <code>{{$errors->first('short_description')}}</code>
+                                <label>Short Content</label>
+                                <textarea type="text" class="form-control" name="short_content" rows="4" cols="50"></textarea>
+                                @if($errors->has('short_content'))
+                                    <code>{{$errors->first('short_content')}}</code>
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label>Category</label>
-                                <input type="number" class="form-control" name="category_id" >
-                                @if($errors->has('category_id'))
-                                    <code>{{$errors->first('category_id')}}</code>
+                                <label>Long Content</label>
+                                <textarea type="text" class="form-control" name="long_content" rows="4" cols="50"></textarea>
+                                @if($errors->has('long_content'))
+                                    <code>{{$errors->first('long_content')}}</code>
                                 @endif
                             </div>
                             <div class="form-group">
                                 <label>SubCategory</label>
-                                <input type="number" class="form-control" name="subcategory_id" >
+                                <select class="form-select" name="subcategory_id">
+                                    @php
+                                        use App\Models\SubNavBar;
+                                        $subnavbars = SubNavBar::where('status',1)->where('type','blog')->get();
+                                    @endphp
+                                    @foreach($subnavbars as $subnavbar){
+                                    <option value='{{$subnavbar->id}}'>{{$subnavbar->name}}</option>
+                                    @endforeach
+
+                                </select>
                                 @if($errors->has('subcategory_id'))
                                     <code>{{$errors->first('subcategory_id')}}</code>
-                                @endif
-                            </div>
-                            <div class="form-group">
-                                <label>Brand_id</label>
-                                <input type="number" class="form-control" name="brand_id" >
-                                @if($errors->has('brand_id'))
-                                    <code>{{$errors->first('brand_id')}}</code>
-                                @endif
-                            </div>
-                            <div class="form-group">
-                                <label>price</label>
-                                <input type="number" class="form-control" name="price" >
-                                @if($errors->has('price'))
-                                    <code>{{$errors->first('price')}}</code>
-                                @endif
-                            </div>
-                            <div class="form-group">
-                                <label>stock</label>
-                                <input type="number" class="form-control" name="stock" >
-                                @if($errors->has('stock'))
-                                    <code>{{$errors->first('stock')}}</code>
                                 @endif
                             </div>
                             <div class="form-group">
@@ -115,7 +83,12 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <a class="btn btn-outline-dark" href="{{route('product.store')}}">Back</a>
+                            <a class="btn btn-outline-dark" href="@if(Auth::user()->role=='admin')
+                            {{route('change.blog')}}
+                        @else
+                            {{route('mod.blog')}}
+                       @endif">Back</a>
+
 
                             <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#create-new-line">
                                 Create
@@ -128,7 +101,7 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            Check twice!
+                                            Are your sure? Check twice.
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>

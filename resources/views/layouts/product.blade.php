@@ -18,7 +18,7 @@ $userid= App\Models\User::where('id',$product[0]->user_id)->get();
                     {echo "<img src='".url($product[0]->image_2)."' alt='Thumbnail 2' class='thumbnail rounded ' onclick='changeImage(event, this.src)'>";}
                 if($product[0]->image_3)
                     {echo "<img src='".url($product[0]->image_3)."' alt='Thumbnail 3' class='thumbnail rounded ' onclick='changeImage(event, this.src)'>";}
-                   if($product[0]->image_4)
+                if($product[0]->image_4)
                     {echo "<img src='".url($product[0]->image_4)."' alt='Thumbnail 4' class='thumbnail rounded ' onclick='changeImage(event, this.src)'>";}
 
                 @endphp
@@ -72,7 +72,6 @@ $userid= App\Models\User::where('id',$product[0]->user_id)->get();
 
         </div>
     </div>
-</div>
 
 <script>
     function changeImage(event, src) {

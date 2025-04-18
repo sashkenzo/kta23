@@ -3,7 +3,6 @@ use App\Http\Controllers\Change\Banner2CarouselController;
 use App\Http\Controllers\Change\CardsController;
 use App\Http\Controllers\Change\FooterController;
 use App\Http\Controllers\Change\FooterLogoController;
-use App\Http\Controllers\Change\LoginbarController;
 use App\Http\Controllers\Change\BannerController;
 use App\Http\Controllers\Change\NavbarController;
 use App\Http\Controllers\Change\SubNavBarController;
@@ -12,7 +11,7 @@ use App\Http\Controllers\Change\UsersController;
 
 
 
-
+require __DIR__.'/super.php';
 
 
 
@@ -53,15 +52,7 @@ Route::post('/footer', [FooterController::class, 'store'])->name('footer.store')
 Route::put('/footer/{id}', [FooterController::class, 'update'])->name('footer.update');
 Route::delete('/footer/{id}', [FooterController::class, 'destroy'])->name('footer.delete');
 Route::put('/footer/{id}/changestatus', [FooterController::class, 'changeStatusBtn'])->name('footer.changestatus');
-// change LoginBar form //
 
-Route::get('/loginbar', [LoginbarController::class, 'index'])->name('loginbar');
-Route::get('/loginbar/new', [LoginbarController::class, 'create'])->name('loginbar.create');
-Route::get('/loginbar/{id}', [LoginbarController::class, 'edit'])->name('loginbar.edit');
-Route::post('/loginbar', [LoginbarController::class, 'store'])->name('loginbar.store');
-Route::put('/loginbar/{id}', [LoginbarController::class, 'update'])->name('loginbar.update');
-Route::delete('/loginbar/{id}', [LoginbarController::class, 'destroy'])->name('loginbar.delete');
-Route::put('/loginbar/{id}/changestatus', [LoginbarController::class, 'changeStatusBtn'])->name('loginbar.changestatus');
 // change navBar form //
 
 Route::get('/navs', [NavbarController::class, 'index'])->name('navs');

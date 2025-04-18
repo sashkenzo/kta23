@@ -6,12 +6,14 @@ use App\DataTables\BannerDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use App\Models\BannerCarousel;
+use App\Traits\controllerTrait;
 use App\Traits\imageUploadTrait;
 use Illuminate\Http\Request;
 
 class BannerController extends Controller
 {
     use imageUploadTrait;
+    use controllerTrait;
     /**
      * Display a listing of the resource.
      */
@@ -45,7 +47,7 @@ class BannerController extends Controller
         ]));
         $banner->image = $this->uploadImage($request,'image','upload/carousel',$banner->image);
         $banner->save();
-        return redirect()->route('change.banner')->with('status','Banner created successfully');
+        return redirect()->route('change.banner')->with('status','Banner created successfully')->with('success','success');
     }
 
     /**
@@ -83,7 +85,7 @@ class BannerController extends Controller
         ]));
         $banner->image = $this->uploadImage($request,'image','upload/carousel',$banner->image);
         $banner->save();
-        return redirect()->route('change.banner')->with('status','Banner update successfully');
+        return redirect()->route('change.banner')->with('status','Banner update successfully')->with('success','success');
     }
 
     /**
@@ -92,11 +94,9 @@ class BannerController extends Controller
     public function destroy(string $id)
     {
         $banner = Banner::findOrFail($id);
-        if(public_path($banner->image)!=public_path(null)){
-            unlink(public_path($banner->image));
-        }
+        $this->deleteImage($banner, 'image');
         $banner->delete();
-        return redirect()->route('change.banner')->with('status','Banner deleted successfully');
+        return redirect()->route('change.banner')->with('status','Banner deleted successfully')->with('success','success');
 
     }
     public function changeStatusBtn(Request $request, string $id)

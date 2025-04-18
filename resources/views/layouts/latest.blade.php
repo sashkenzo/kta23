@@ -1,18 +1,19 @@
 @php
     use App\Models\Product;
-    $cards= Product::where('status', 1)->latest()->take(6)->get();
+    $products= Product::where('status', 1)->latest()->take(4)->get();
 @endphp
+
 <div class="container">
-    <h1>Latest</h1>
+    <h2 class="text-center">Latest</h2>
     <div class="row justify-between">
-        @foreach($cards as $card)
+        @foreach($products as $product)
             <div class="col">
                 <div class="card justify-items-center ">
-                    <a href="product/{{$card->slug}}"><img src="{{$card->image}}" class="card-img-top  h-100"
-                                                           alt="picture of a card name {{$card->name}}">
+                    <a href="product/{{$product->slug}}"><img src="{{$product->image}}" class="card-img-top  h-100"
+                                                           alt="picture of a card name {{$product->name}}">
                         <div class="card-body">
-                            <h5 class="card-title">{{$card->name}}</h5>
-                            <p class="card-text">{{$card->short_description}}</p>
+                            <h4 class="card-title">{{$product->name}}</h4>
+                            <p class="card-text">{{$product->short_description}}</p>
                         </div>
                     </a>
                 </div>

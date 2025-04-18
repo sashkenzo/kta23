@@ -1,6 +1,6 @@
 @extends('dashboard.components.master')
 @section('page')
-<h1 class="h2">Your Products</h1>
+<h1 class="h2">Your Blogs</h1>
 @endsection
 @section('section')
     <div class="row">
@@ -12,7 +12,11 @@
             @endif
             <div class="card">
                 <div class="card-header">
-                    <a class="btn btn-outline-success" href="{{route('product.create')}}">Create</a>
+                    <a class="btn btn-outline-success" href="@if(Auth::user()->role=='admin')
+                            {{route('change.blog.create')}}
+                        @else
+                            {{route('mod.blog.create')}}
+                       @endif">Create</a>
                 </div>
                 <div class="card-body">
                     {{$dataTable->table()}}

@@ -19,10 +19,8 @@ class ProductSeeder extends Seeder
             'user_id' => '1',
             'short_description' => 'a bar of gold1',
             'description' => 'a bar of gold',
-            'category_id' => '1',
             'subcategory_id' => '1',
             'price' => '9999',
-            'stock'=> '9999',
             'status'=> '1',
         ]);
         DB::table('products')->insert([
@@ -31,10 +29,8 @@ class ProductSeeder extends Seeder
             'user_id' => '2',
             'short_description' => 'a bar of gold2',
             'description' => 'a bar of gold',
-            'category_id' => '1',
             'subcategory_id' => '1',
             'price' => '9999',
-            'stock'=> '9999',
             'status'=> '1',
         ]);
     }

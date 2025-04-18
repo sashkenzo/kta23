@@ -15,22 +15,17 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->text('user_id')->nullable();
+            $table->text('user_id');
             $table->string('type')->default('product');
             $table->text('image')->nullable();
             $table->text('image_2')->nullable();
             $table->text('image_3')->nullable();
             $table->text('image_4')->nullable();
-            $table->text('description')->nullable();
+            $table->text('description');
             $table->text('short_description')->nullable();
-            $table->integer('category_id')->nullable();
-            $table->integer('subcategory_id')->nullable();
-            $table->integer('brand_id')->nullable();
+            $table->integer('subcategory_id');
             $table->double('price')->default(99999);
-            $table->integer('stock')->nullable();
-            $table->string('sku')->nullable();
             $table->boolean('status');
-            $table->boolean('is_top')->nullable();
             $table->timestamps();
         });
     }

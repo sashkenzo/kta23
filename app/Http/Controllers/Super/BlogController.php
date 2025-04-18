@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers\Super;
 
+use App\DataTables\BlogDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class BlogController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(BlogDataTable $dataTable)
     {
-        //
+        return $dataTable->render('dashboard.layouts.blog.index');
     }
 
     /**
@@ -21,23 +23,39 @@ class BlogController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.layouts.blog.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+        $blog = new Blog();
+        $blog->fill($request->validate([
+            'name' => ['required', 'max:100'],
+            'user_id' => ['required'],
+            'status' => ['required'],
+            'title' => ['required'],
+            'content' => ['required'],
+            'short_content' => ['required'],
+            'long_content' => ['required'],
+            'subcategory_id' => ['required'],
+
+        ]));
+        $blog->slug=Str::slug($blog->name);
+        $blog->save();
+
+        return redirect()->route('super.blog')->with('status', 'Product created successfully')->with('success','success');
+
+
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Blog $blog)
+    public function show(string $id)
     {
-        //
+
     }
 
     /**

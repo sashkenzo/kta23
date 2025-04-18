@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Change;
 use App\DataTables\CardsDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Cards;
+use App\Traits\controllerTrait;
 use App\Traits\imageUploadTrait;
 use Illuminate\Http\Request;
 
 class CardsController extends Controller
 {
     use imageUploadTrait;
+    use controllerTrait;
     /**
      * Display a listing of the resource.
      */
@@ -91,9 +93,7 @@ class CardsController extends Controller
     public function destroy(string $id)
     {
         $cards = Cards::findOrFail($id);
-        if(public_path($cards->image)!=public_path(null)){
-            unlink(public_path($cards->image));
-        }
+        $this->deleteImage($cards, 'image');
         $cards->delete();
         return redirect()->route('change.cards')->with('status','A card deleted successfully');
 

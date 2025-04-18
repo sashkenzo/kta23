@@ -34,17 +34,19 @@
                     </li>
                 </ul>
                 @endif
-                    @if(Auth::user()->role=='admin' or Auth::user()->role=='super')
+                    @if(Auth::user()->role=='super' or Auth::user()->role=='admin' )
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item dropdown">
 
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                Manage Product Items
+                                Manage Nav Blog Items
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Blog</a></li>
-                                <li><a class="dropdown-item" href="#">Product</a></li>
-                                <li><a class="dropdown-item" href="#">Add Product to Home</a></li>
+                                <li><a class="dropdown-item" href="@if(Auth::user()->role=='admin')
+                            {{route('change.blog')}}
+                        @else
+                            {{route('mod.blog')}}
+                       @endif">Blog</a></li>
                             </ul>
                         </li>
                     </ul>

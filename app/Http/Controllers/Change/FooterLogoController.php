@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Change;
 use App\DataTables\FooterLogoDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\FooterLogo;
+use App\Traits\controllerTrait;
 use App\Traits\imageUploadTrait;
 use Illuminate\Http\Request;
 
 class FooterLogoController extends Controller
 {
     use imageUploadTrait;
+    use controllerTrait;
     /**
      * Display a listing of the resource.
      */
@@ -85,9 +87,12 @@ class FooterLogoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(FooterLogo $footerLogo)
+    public function destroy(string $id)
     {
-        //
+        $footerlogo = FooterLogo::findOrFail($id);
+        $this->deleteImage($footerlogo, 'image');
+        $footerlogo->delete();
+        return redirect()->route('change.footerlogo')->with('status','A Logo deleted successfully');
     }
 
     public function changeStatusBtn(Request $request, string $id)

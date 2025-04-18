@@ -11,18 +11,11 @@ class Product extends Model
         'slug',
         'type',
         'user_id',
-        'description',
-        'short_description',
-        'category_id',
+        'description','short_description',
         'subcategory_id',
-        'brand_id',
         'price',
-        'stock',
         'status',
-        'image_1',
-        'image_2',
-        'image_3',
-        'image_4',
+        'image_1', 'image_2', 'image_3', 'image_4',
     ];
 
     public function category(){

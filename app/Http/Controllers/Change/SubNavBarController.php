@@ -38,7 +38,7 @@ class SubNavBarController extends Controller
         $subnavs->slug=Str::slug($subnavs->name);
         $subnavs->save();
 
-        return redirect()->route('change.subnavs')->with('status','Sub-category for navbar created successfully');
+        return redirect()->route('change.subnavs')->with('status','Sub-category for navbar created successfully')->with('success','success');
     }
 
     /**
@@ -62,7 +62,7 @@ class SubNavBarController extends Controller
     {
         $navs = Navbar::all();
         $subnav = SubNavBar::findOrFail($id);
-        return view('dashboard.layouts.subnavbar.edit',compact('subnav','navs'));
+        return view('dashboard.layouts.subnavbar.edit',compact('subnav','navs'))->with('success','success');
     }
 
     /**
@@ -81,7 +81,7 @@ class SubNavBarController extends Controller
 
         $subnavs->slug = Str::slug($subnavs->name);
         $subnavs->save();
-        return redirect()->route('change.subnavs')->with('status', 'Sub-category for NavBar updated successfully','');
+        return redirect()->route('change.subnavs')->with('status', 'Sub-category for NavBar updated successfully','')->with('success','success');
 
     }
 
@@ -92,7 +92,7 @@ class SubNavBarController extends Controller
     {
         $subnavbar = SubNavBar::findOrFail($id);
         $subnavbar->delete();
-        return redirect()->route('change.subnavbar')->with('status','Sub-category for NavBar deleted successfully');
+        return redirect()->route('change.subnavbar')->with('status','Sub-category for NavBar deleted successfully')->with('success','success');
 
     }
     public function changeStatusBtn(Request $request, string $id)

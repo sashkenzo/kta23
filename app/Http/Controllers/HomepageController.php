@@ -16,8 +16,7 @@ class HomepageController extends Controller
      */
     public function index(): View
     {
-        $banners = Banner::where('status', 1)->latest()->get();
-        return view('homepage', compact('banners'));
+        return view('homepage');
     }
 
     /**

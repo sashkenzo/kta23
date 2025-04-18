@@ -12,7 +12,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -28,7 +28,8 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product=Blog::subCategory();
+        return $product;
     }
 
     /**

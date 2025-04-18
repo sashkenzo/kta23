@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Change;
 use App\DataTables\Banner2CarouselDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Banner2Carousel;
+use App\Traits\controllerTrait;
 use App\Traits\imageUploadTrait;
 use Illuminate\Http\Request;
 
 class Banner2CarouselController extends Controller
 {
     use imageUploadTrait;
+    use controllerTrait;
 
     /**
      * Display a listing of the resource.
@@ -45,7 +47,7 @@ class Banner2CarouselController extends Controller
         ]));
         $banner2carousel->image = $this->uploadImage($request, 'image', 'upload', $banner2carousel->image);
         $banner2carousel->save();
-        return redirect()->route('change.bannercarousel')->with('status', 'Banner-Carousel created successfully');
+        return redirect()->route('change.bannercarousel')->with('status', 'Banner-Carousel created successfully')->with('success','success');
     }
 
     /**
@@ -84,7 +86,7 @@ class Banner2CarouselController extends Controller
             ]));
             $bannercarousel->image = $this->uploadImage($request, 'image', 'upload', $bannercarousel->image);
             $bannercarousel->save();
-            return redirect()->route('change.bannercarousel')->with('status', 'Banner-Carousel update successfully');
+            return redirect()->route('change.bannercarousel')->with('status', 'Banner-Carousel update successfully')->with('success','success');
 
         }
     }
@@ -95,11 +97,9 @@ class Banner2CarouselController extends Controller
     public function destroy($id)
     {
         $bannercarousel = Banner2Carousel::findOrFail($id);
-        if (public_path($bannercarousel->image) != public_path(null)) {
-            unlink(public_path($bannercarousel->image));
-        }
+        $this->deleteImage($bannercarousel, 'image');
         $bannercarousel->delete();
-        return redirect()->route('change.bannercarousel')->with('status', 'Banner-Carousel deleted successfully');
+        return redirect()->route('change.bannercarousel')->with('status', 'Banner-Carousel deleted successfully')->with('success','success');
 
     }
 

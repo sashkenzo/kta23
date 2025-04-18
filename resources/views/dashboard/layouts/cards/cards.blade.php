@@ -2,20 +2,24 @@
     use App\Models\Cards;
     $cards= Cards::where('status', 1)->latest()->take(6)->get();
 @endphp
-<div class="container">
-    <h2>Why us?</h2>
-    <div class="row justify-between">
-        @foreach($cards as $card)
+
+<!-- Features Section -->
+@if ($cards != null)
+<section class="features-section">
+    <div class="container justify-between">
+        <h2 class="text-center">Features</h2>
+        <div class="row">
+            @foreach($cards as $card)
             <div class="col">
-                <div class="card justify-items-center" style="width: 8rem;">
-                    <img src="{{$card->image}}" class="card-img-top h-100"
+                <div class="feature-box">
+                    <img src="{{$card->image}}" style="height:60px" class="img"
                          alt="picture of a card name {{$card->name}}">
-                        <div class="card-body">
-                        <h5 class="card-title">{{$card->name}}</h5>
-                        <p class="card-text">{{$card->content}}</p>
-                        </div>
+                    <h4 class="feature-title">{{$card->name}}</h4>
+                    <p class="feature-description">{{$card->content}}</p>
                 </div>
             </div>
-        @endforeach
+            @endforeach
+        </div>
     </div>
-</div>
+</section>
+@endif
