@@ -35,7 +35,7 @@
                         </div>
                     <button style="float: right;" type="submit" class="btn btn-primary m-2">Sign in</button>
                 </form>
-                    <a href="{{ route('register') }}" style="float: right;" class="btn btn-outline-primary m-2">Register</a>
+                    <a href="{{ route('register') }}" style="float: right;" class="btn btn-secondary m-2">Register</a>
             <!----TODO add a forgot password backend
                     <a href="#" style="float: right;" type="submit" class="btn btn-outline-warning m-2">Forgot password</a>----->
                 </div>

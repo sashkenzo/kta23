@@ -45,32 +45,19 @@ class ProductController extends Controller
             'description' => ['required'],
             'short_description' => ['required'],
             'subcategory_id' => ['required'],
-
         ]));
 
-        $product->slug=Str::slug($product->name);
+        $product->slug=time().Str::slug($product->name);
         $product->type='product';
-        if($request->image){
-            $request->validate([
-                'image' => ['nullable', 'image', 'max:2000'],]);
-            $product->image = $this->uploadImage($request, 'image', 'upload/product/pics/'.$product->slug, $product->image);
-        }
-        if($request->image_2){
-            $request->validate([
-                'image_2' => ['nullable', 'image', 'max:2000'],]);
-            $product->image_2 = $this->uploadImage($request, 'image_2', 'upload/product/pics/'.$product->slug, $product->image_2);
-        }
-        if($request->image_3){
-            $request->validate([
-                'image_3' => ['nullable', 'image', 'max:2000'],]);
-            $product->image_3 = $this->uploadImage($request, 'image_3', 'upload/product/pics/'.$product->slug, $product->image_3);
-        }
-        if($request->image_4){
-            $request->validate([
-                'image_4' => ['nullable', 'image', 'max:2000'],]);
-            $product->image_4 = $this->uploadImage($request, 'image_4', 'upload/product/pics/'.$product->slug, $product->image_4);
-        }
 
+        $images=['image','image_2','image_3','image_4'];
+        foreach($images as $image){
+            if($request->$image){
+                $request->validate([
+                    $image => ['nullable', 'image', 'max:2000'],]);
+                $product->$image = $this->uploadImage($request, $image, 'upload/product/pics/'.$product->slug, $product->$image);
+            }
+        }
         $product->save();
 
         return redirect()->route('product')->with('status', 'Product created successfully')->with('success','success');
@@ -100,7 +87,37 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product, string $slug)
     {
-        //
+        $product = Product::FindOfDie($slug);
+        if($product->slug!=Str::slug($product->name)){
+            $product->fill($request->validate([
+                'name' => ['required', 'max:100'],
+                'user_id' => ['required'],
+                'status' => ['required'],
+                'price' => ['required'],
+                'description' => ['required'],
+                'short_description' => ['required'],
+                'subcategory_id' => ['required'],
+        ]));
+
+        $product->slug=time().Str::slug($product->name);
+        $product->type='product';
+
+        $images=['image','image_2','image_3','image_4'];
+        foreach($images as $image){
+            if($request->$image){
+                $request->validate([
+                    $image => ['nullable', 'image', 'max:2000'],]);
+                $product->$image = $this->uploadImage($request, $image, 'upload/product/pics/'.$product->slug, $product->$image);
+            }
+        }
+        $product->save();
+
+        return redirect()->route('product')->with('status', 'Product created successfully')->with('success','success');
+        }else{
+            return redirect()->route('product')->with('status', 'Something went wrong')->with('success','danger');
+
+        }
+
     }
 
     /**
@@ -109,10 +126,10 @@ class ProductController extends Controller
     public function destroy(string $slug)
     {
         $product = Product::where('slug',$slug)->get();
-        $this->deleteImage($product[0], 'image');
-        $this->deleteImage($product[0], 'image_2');
-        $this->deleteImage($product[0], 'image_3');
-        $this->deleteImage($product[0], 'image_4');
+        $images=['image','image_2','image_3','image_4'];
+        foreach($images as $image) {
+            $this->deleteImage($product[0], $image);
+        }
         $product[0]->delete();
         return redirect()->route('product')->with('status','A product deleted successfully')->with('success','success');
 

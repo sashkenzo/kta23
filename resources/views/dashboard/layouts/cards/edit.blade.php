@@ -20,7 +20,7 @@
                 <div class="card-body">
                     <div class="card-body">
                         <div class="form-group">
-                            <p><img height="100" src="{{asset($cards->image)}}" alt="Preview of a cards picture"></p>
+                            <p><img height="100" src="{{url($cards->image)}}" alt="Preview of a cards picture"></p>
                             <label>Cards</label>
                             <input type="file" class="form-control" name="image">
                             @if($errors->has('image'))
@@ -52,8 +52,8 @@
                         <div class="form-group">
                             <label>Status : {{$cards->status}}</label>
                             <select class="form-control" name="status">
-                                <option {{$cards->status == 1 ? 'selected': ''}} value='1'>1</option>
-                                <option {{$cards->status == 0 ? 'selected': ''}} value='0'>0</option>
+                                <option {{$cards->status == 1 ? 'selected': ''}} value='1'>Active</option>
+                                <option {{$cards->status == 0 ? 'selected': ''}} value='0'>Inactive</option>
                             </select>
                         </div>
                     </div>

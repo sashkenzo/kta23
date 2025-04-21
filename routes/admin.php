@@ -10,12 +10,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Change\UsersController;
 
 
-
-require __DIR__.'/super.php';
-
-
-
-
 // change carousel form //
 
 Route::get('/bannercarousel', [Banner2CarouselController::class, 'index'])->name('bannercarousel');

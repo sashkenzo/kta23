@@ -10,7 +10,8 @@ class Banner2Carousel extends Model
         'image',
         'name',
         'button_url',
-        'serial',
+        'button_url_text',
+        'content',
         'status',
     ];
 }

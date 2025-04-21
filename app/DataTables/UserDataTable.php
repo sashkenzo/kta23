@@ -28,10 +28,10 @@ class UserDataTable extends DataTable
 
 
             ->addColumn('action', function($query){
-                return $this->datatableAction($query,'users');
+                return $this->datatableAction($query,'change.users','id');
             })
             ->addColumn('status', function($query){
-                return $this->datatableStatus($query,'users');
+                return $this->datatableStatus($query,'change.users','id');
             })
             ->rawColumns(['action','status'])
             ->setRowId('id');

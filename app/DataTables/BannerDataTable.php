@@ -26,12 +26,12 @@ class BannerDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->setRowId('id')
         ->addColumn('action', function($query){
-            return $this->datatableAction($query,'banner');})
+            return $this->datatableAction($query,'change.banner','id');})
         ->addColumn('image', function($query){
             return $this->datatableImage($query);
         })
         ->addColumn('status', function($query){
-            return $this->datatableStatus($query,'banner');
+            return $this->datatableStatus($query,'change.banner','id');
         })
             ->rawColumns(['image','action','status']);
 

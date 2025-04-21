@@ -1,9 +1,38 @@
 @extends('layouts.master')
 @section('content')
-    <div class="container mt-5">
+    <section class="product-store position-relative">
+    <div class="container">
+        <h2 class="text-center">{{$catName}}</h2>
         <div class="row">
-            <!-- Product Images -->
-            <h1>product page</h1>
+            <div class="swiper product-watch-swiper">
+                <div class="swiper-wrapper">
+            @foreach($products as $product)
+                        <div class="swiper-slide">
+                            <div class="product-card position-relative">
+                                <div class="image-holder">
+                                    <img src="{{url($product->image)}}" alt="product-item" class="img-fluid">
+                                </div>
+                                    <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
+                                    <h3 class="card-title text-uppercase">
+                                        <a href="../product/{{$product->slug}}">{{$product->name}}</a>
+                                    </h3>
+                                    <span class="item-price text-primary">{{$product->price}}€</span>
+                                </div>
+                            </div>
+                        </div>
+            @endforeach
+            {{$products->links()}}
+                </div>
+            </div>
         </div>
     </div>
+    </section>
+
+
+
+
+
+
 @endsection
+
+

@@ -26,12 +26,12 @@ class Banner2CarouselDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function($query){
-                return $this->datatableAction($query,'bannercarousel');})
+                return $this->datatableAction($query,'change.bannercarousel','id');})
             ->addColumn('image', function($query){
                 return $this->datatableImage($query);
             })
             ->addColumn('status', function($query){
-                return $this->datatableStatus($query,'bannercarousel');
+                return $this->datatableStatus($query,'change.bannercarousel','id');
             })
             ->rawColumns(['image','action','status'])
             ->setRowId('id');
@@ -79,7 +79,6 @@ class Banner2CarouselDataTable extends DataTable
             Column::make('image'),
             Column::make('name'),
             Column::make('status'),
-            Column::make('serial'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

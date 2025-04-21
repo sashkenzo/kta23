@@ -16,7 +16,8 @@ return new class extends Migration
             $table->text('image')->nullable();
             $table->string('name');
             $table->string('button_url');
-            $table->integer('serial');
+            $table->string('button_url_text');
+            $table->string('content');
             $table->boolean('status');
 
             $table->timestamps();

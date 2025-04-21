@@ -15,10 +15,7 @@
 </head>
 
 <body>
-<header>
-    @include ("layouts.loginbar")
-    @include ("dashboard.layouts.navbar.navbar")
-</header>
+@include ("dashboard.layouts.navbar.navbar")
 @yield('content')
 
 @include("layouts.footer")

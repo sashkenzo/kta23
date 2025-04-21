@@ -1,6 +1,7 @@
+
 @extends('dashboard.components.master')
 @section('page')
-<h1 class="h2">Edit item for Navbar</h1>
+<h1 class="h2">Edit Blog Document</h1>
 @endsection
 @section('section')
     <div class="row">
@@ -12,55 +13,76 @@
             @endif
             <div class="card">
                 <div class="card-header">
-                    <h4>Edit a Card</h4>
+                    <h4>Edit a Blog</h4>
                 </div>
-                <form action="{{route('change.cards.update',$cards->id)}}" method="POST" enctype="multipart/form-data" id="update">
+                <form action="{{route('blog.update',$blog->slug)}}" method="POST" enctype="multipart/form-data" id="update">
                     @csrf
                     @method('PUT')
                 <div class="card-body">
+                    <input type="hidden" name="user_id" value="{{Auth::user()->id}}" />
                     <div class="card-body">
                         <div class="form-group">
-                            <p><img height="100" src="{{asset($cards->image)}}" alt="Preview of a cards picture"></p>
-                            <label>Cards</label>
-                            <input type="file" class="form-control" name="image">
-                            @if($errors->has('image'))
-                                <code>{{$errors->first('image')}}</code>
-                            @endif
-                        </div>
-                        <div class="form-group">
                             <label>Name</label>
-                            <input type="text" class="form-control" name="name" value="{{$cards->name}}">
+                            <input type="text" class="form-control" name="name">
                             @if($errors->has('name'))
                                 <code>{{$errors->first('name')}}</code>
                             @endif
                         </div>
-
+                        <div class="form-group">
+                            <label>Blog Title</label>
+                            <input type="text" class="form-control" name="title">
+                            @if($errors->has('title'))
+                                <code>{{$errors->first('title')}}</code>
+                            @endif
+                        </div>
                         <div class="form-group">
                             <label>Content</label>
-                            <input type="text" class="form-control" name="content" value="{{$cards->content}}">
-                            @if($errors->has('content'))
-                                <code>{{$errors->first('content')}}</code>
+                            <textarea type="text" class="form-control" name="content" rows="4" cols="50"></textarea>
+                            @if($errors->has('description'))
+                                <code>{{$errors->first('description')}}</code>
                             @endif
                         </div>
                         <div class="form-group">
-                            <label>Button Url</label>
-                            <input type="text" class="form-control" name="button_url" value="{{$cards->button_url}}">
-                            @if($errors->has('button_url'))
-                                <code>{{$errors->first('button_url')}}</code>
+                            <label>Short Content</label>
+                            <textarea type="text" class="form-control" name="short_content" rows="4" cols="50"></textarea>
+                            @if($errors->has('short_content'))
+                                <code>{{$errors->first('short_content')}}</code>
                             @endif
                         </div>
                         <div class="form-group">
-                            <label>Status : {{$cards->status}}</label>
+                            <label>Long Content</label>
+                            <textarea type="text" class="form-control" name="long_content" rows="4" cols="50"></textarea>
+                            @if($errors->has('long_content'))
+                                <code>{{$errors->first('long_content')}}</code>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label>SubCategory</label>
+                            <select class="form-select" name="subcategory_id">
+                                @php
+                                    use App\Models\SubNavBar;
+                                    $subnavbars = SubNavBar::where('status',1)->where('type','blog')->get();
+                                @endphp
+                                @foreach($subnavbars as $subnavbar){
+                                <option value='{{$subnavbar->id}}'>{{$subnavbar->name}}</option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('subcategory_id'))
+                                <code>{{$errors->first('subcategory_id')}}</code>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label>Status</label>
                             <select class="form-control" name="status">
-                                <option {{$cards->status == 1 ? 'selected': ''}} value='1'>1</option>
-                                <option {{$cards->status == 0 ? 'selected': ''}} value='0'>0</option>
+                                <option value="1">Active</option>
+                                <option value="0">Inactive</option>
                             </select>
                         </div>
                     </div>
                 </div>
                 </form>
                     <div class="card-footer">
-                        <a class="btn btn-outline-dark" href="{{route('change.cards')}}">Back</a>
+                        <a class="btn btn-outline-dark" href="{{route('blog')}}">Back</a>
                         <button form="delete" type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete-line">
                         Delete
                     </button>
@@ -99,7 +121,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
-                                    <form action="{{route('change.cards.delete',$cards->id)}}" method="POST" id="delete">
+                                    <form action="{{route('blog.delete',$blog->slug)}}" method="POST" id="delete">
                                         @csrf
                                         @method('DELETE')
                                     <button form="delete" type="submit" class="btn btn-outline-success">Accept</button>

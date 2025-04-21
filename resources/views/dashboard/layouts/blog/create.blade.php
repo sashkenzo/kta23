@@ -14,12 +14,7 @@
                     <div class="card-header">
                         <h4>New blog</h4>
                     </div>
-                    <form action="
-                        @if(Auth::user()->role=='admin')
-                            {{route('change.blog.store')}}
-                        @else
-                            {{route('mod.blog.store')}}
-                       @endif" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('blog.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="user_id" value="{{Auth::user()->id}}" />
                         <div class="card-body">
@@ -83,13 +78,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <a class="btn btn-outline-dark" href="@if(Auth::user()->role=='admin')
-                            {{route('change.blog')}}
-                        @else
-                            {{route('mod.blog')}}
-                       @endif">Back</a>
-
-
+                            <a class="btn btn-outline-dark" href="{{route('blog')}}">Back</a>
                             <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#create-new-line">
                                 Create
                             </button>

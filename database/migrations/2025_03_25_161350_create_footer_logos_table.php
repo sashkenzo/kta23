@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('image');
-            $table->string('homelink');
+            $table->string('homelink')->default('#');
+            $table->string('text')->nullable();
             $table->boolean('status');
 
             $table->timestamps();

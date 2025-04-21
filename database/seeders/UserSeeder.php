@@ -21,5 +21,12 @@ class UserSeeder extends Seeder
             'role' => 'admin',
             'status' => 1
         ]);
+        DB::table('users')->insert([
+            'name' => 'TestAdmin',
+            'email' => 'test@test.test',
+            'password' => Hash::make('test321321'),
+            'role' => 'admin',
+            'status' => 1
+        ]);
     }
 }

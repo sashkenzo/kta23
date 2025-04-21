@@ -41,7 +41,6 @@ class CardsController extends Controller
         $cards->fill($request->validate([
             'name'=>['required','max:100'],
             'content'=>['required','max:1000'],
-            'button_url'=>['max:300'],
             'status'=>['required'],
         ]));
         $cards->image = $this->uploadImage($request,'image','upload/cards',$cards->image);
@@ -79,7 +78,6 @@ class CardsController extends Controller
         $cards->fill($request->validate([
             'name'=>['required','max:100'],
             'content'=>['required','max:1000'],
-            'button_url'=>['max:300'],
             'status'=>['required'],
         ]));
         $cards->image = $this->uploadImage($request,'image','upload/cards',$cards->image);

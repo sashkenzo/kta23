@@ -38,7 +38,7 @@ class NavbarController extends Controller
         $nav->slug=Str::slug($nav->name);
         $nav->save();
 
-        return redirect()->route('change.navbar')->with('status','Carousel created successfully');
+        return redirect()->route('change.navs')->with('status','Category created successfully');
     }
 
     /**

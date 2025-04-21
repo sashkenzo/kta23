@@ -92,7 +92,7 @@ class SubNavBarController extends Controller
     {
         $subnavbar = SubNavBar::findOrFail($id);
         $subnavbar->delete();
-        return redirect()->route('change.subnavbar')->with('status','Sub-category for NavBar deleted successfully')->with('success','success');
+        return redirect()->route('change.subnavs')->with('status','Sub-category for NavBar deleted successfully')->with('success','success');
 
     }
     public function changeStatusBtn(Request $request, string $id)
@@ -101,6 +101,6 @@ class SubNavBarController extends Controller
         $subnavbar->fill($request->validate([
             'status'=>['required'],]));
         $subnavbar->save();
-        return redirect()->route('change.subnavbar')->with('status','SubCategory id: '.$subnavbar->id.' status was updated successfully')->with('success','success');
+        return redirect()->route('change.subnavs')->with('status','SubCategory id: '.$subnavbar->id.' status was updated successfully')->with('success','success');
     }
 }

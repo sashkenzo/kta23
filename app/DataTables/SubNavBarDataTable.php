@@ -26,13 +26,13 @@ class SubNavBarDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function($query){
-                return $this->datatableAction($query,'subnavs');
+                return $this->datatableAction($query,'change.subnavs','id');
             })
             ->addColumn('parentCategory', function($query){
                 return $parent= NavBar::where('id',$query->navbar_id)->get('name')->first()->name;
             })
             ->addColumn('status', function($query){
-                return $this->datatableStatus($query,'subnavs');
+                return $this->datatableStatus($query,'change.subnavs','id');
             })
             ->rawColumns(['action','status','parentCategory'])
             ->setRowId('id');

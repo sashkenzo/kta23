@@ -3,32 +3,28 @@
     $bannercarousels = Banner2Carousel::where('status', 1)->latest()->get();
 @endphp
 
-<div class="container">
-    <div id="banner2carautoplaying" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-        @foreach($bannercarousels as $bannercarousel)
-            @if($bannercarousels[0] == $bannercarousel)
-                <div class="carousel-item active">
-                    <a href="{{$bannercarousel->button_url}}">
-                        <img class="img  h-400" style="height:auto; width: auto;" src="{{$bannercarousel->image}}" alt="first pic of banner-carousel"></a>
+<section class="position-relative overflow-hidden bg-light-blue">
+    <div class="swiper main-swiper">
+        <div class="swiper-wrapper">
+            @foreach($bannercarousels as $bannercarousel)
+            <div class="swiper-slide">
+                <div class="container">
+                    <div class="row d-flex align-items-center">
+                        <div class="col-md-6">
+                            <div class="banner-content">
+                                <h1 class="display-2 text-uppercase text-dark pb-5">{{$bannercarousel->content}}</h1>
+                                <a href="{{$bannercarousel->button_url}}" class="btn btn-medium btn-dark text-uppercase btn-rounded-none">{{$bannercarousel->button_url_text}}</a>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="image-holder">
+                                <img class="h-400" src="{{url($bannercarousel->image)}}" alt="banner">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-        @else
-            <div class="carousel-item">
-                <a href="{{$bannercarousel->button_url}}">
-                    <img class="img h-400" style="margin:auto; width: 100%;" src="{{$bannercarousel->image}}" alt="pics of banner-carousel"></a>
             </div>
-        @endif
         @endforeach
+        </div>
     </div>
-
-    <button class="carousel-control-prev" type="button" data-bs-target="#banner2carautoplaying" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#banner2carautoplaying" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-    </div>
-</div>
-
+</section>

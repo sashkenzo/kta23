@@ -41,8 +41,10 @@ class Banner2CarouselController extends Controller
             'image' => ['required', 'image', 'max:2000'],]);
         $banner2carousel->fill($request->validate([
             'name' => ['required', 'max:100'],
+
             'button_url' => ['required','max:200'],
-            'serial' => ['required'],
+            'button_url_text' => ['required','max:200'],
+            'content' => ['required'],
             'status' => ['required'],
         ]));
         $banner2carousel->image = $this->uploadImage($request, 'image', 'upload', $banner2carousel->image);
@@ -80,8 +82,9 @@ class Banner2CarouselController extends Controller
 
             $bannercarousel->fill($request->validate([
                 'name' => ['required', 'max:100'],
-                'button_url' => ['max:200'],
-                'serial' => ['required'],
+                'button_url' => ['required','max:200'],
+                'button_url_text' => ['required','max:200'],
+                'content' => ['required'],
                 'status' => ['required'],
             ]));
             $bannercarousel->image = $this->uploadImage($request, 'image', 'upload', $bannercarousel->image);

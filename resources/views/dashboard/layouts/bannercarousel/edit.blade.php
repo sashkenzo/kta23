@@ -55,13 +55,6 @@
                         @endif
                     </div>
                     <div class="form-group">
-                        <label>Serial</label>
-                        <input type="number" class="form-control" name="serial" value="{{$bannercarousel->serial}}">
-                        @if($errors->has('serial'))
-                            <code>{{$errors->first('serial')}}</code>
-                        @endif
-                    </div>
-                    <div class="form-group">
                         <label>Status: {{$bannercarousel->status}}</label>
                         <select class="form-control" name="status" >
                             <option {{$bannercarousel->status == 1 ? 'selected': ''}} value='1'>1</option>

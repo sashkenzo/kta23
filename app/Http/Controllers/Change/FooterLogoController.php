@@ -41,6 +41,8 @@ class FooterLogoController extends Controller
         $footerlogo->fill($request->validate([
             'name' => ['required', 'max:100'],
             'status' => ['required'],
+            'homelink' => [],
+            'text' => [],
         ]));
         $footerlogo->image = $this->uploadImage($request, 'image', 'upload/logo', $footerlogo->image);
         $footerlogo->save();
@@ -77,6 +79,8 @@ class FooterLogoController extends Controller
             $footerlogo->fill($request->validate([
                 'name' => ['required', 'max:100'],
                 'status' => ['required'],
+                'homelink' => [],
+                'text' => [],
             ]));
             $footerlogo->image = $this->uploadImage($request, 'image', 'upload/logo', $footerlogo->image);
             $footerlogo->save();

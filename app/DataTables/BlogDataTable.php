@@ -3,7 +3,9 @@
 namespace App\DataTables;
 
 use App\Models\Blog;
+use App\Traits\datatablesTrait;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Illuminate\Http\Request;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
@@ -14,18 +16,25 @@ use Yajra\DataTables\Services\DataTable;
 
 class BlogDataTable extends DataTable
 {
+    use datatablesTrait;
     /**
      * Build the DataTable class.
      *
      * @param QueryBuilder<Blog> $query Results from query() method.
      */
-    public function dataTable(QueryBuilder $query): EloquentDataTable
+    public function dataTable(QueryBuilder $query,): EloquentDataTable
     {
-        return (new EloquentDataTable($query))
-            ->addColumn('action', 'blog.action')
-            ->setRowId('id');
-    }
+        return (new EloquentDataTable($query,))
+            ->setRowId('id')
+            ->addColumn('action', function($query){
+                return $this->datatableAction($query,
+                    'blog','id');})
+            ->addColumn('status', function($query){
 
+            return $this->datatableStatus($query,'blog','id');
+            })
+            ->rawColumns(['image','action','status']);
+    }
     /**
      * Get the query source of dataTable.
      *
@@ -63,15 +72,13 @@ class BlogDataTable extends DataTable
     public function getColumns(): array
     {
         return [
+            Column::make('name'),
+            Column::make('status'),
             Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+                ->exportable(false)
+                ->printable(false)
+                ->width(60)
+                ->addClass('text-center'),
         ];
     }
 

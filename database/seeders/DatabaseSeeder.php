@@ -17,14 +17,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UserSeeder::class,
-            BannerSeeder::class,
-            NavBarSeeder::class,
-            Banner2CarouselSeeder::class,
-            SubNavBarSeeder::class,
-            CardsSeeder::class,
-            FooterSeeder::class,
-            FooterLogoSeeder::class,
-            ProductSeeder::class,
+
         ]);
     }
 }

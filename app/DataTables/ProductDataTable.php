@@ -26,10 +26,10 @@ class ProductDataTable extends DataTable
                 return $this->datatableImage($query);
             })
             ->addColumn('status', function($query){
-                return $this->datatableStatusProduct($query,'product');
+                return $this->datatableStatus($query,'product','slug');
             })
             ->addColumn('action', function($query){
-                return $this->datatableActionProduct($query,'product');
+                return $this->datatableActionProduct($query,'product','slug');
             })
             ->rawColumns(['image','action','status']);
     }

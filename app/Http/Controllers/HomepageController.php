@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Banner;
+use App\Models\Blog;
 use App\Models\Banner2Carousel;
 use App\Models\Cards;
 use App\Models\Footer;
+use App\Models\Product;
+use App\Models\SubNavBar;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -38,9 +40,25 @@ class HomepageController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $slug)
     {
-        //
+        $subnavs = SubNavBar::where('slug',$slug)->get();
+        if($subnavs[0]->type=='product'){
+            $products = Product::where('status',1)->where('subcategory_id',$subnavs[0]->id)->paginate(12);
+
+            $catName = $subnavs[0]->name;
+            return view('layouts.productsubnav',compact('products'),compact('catName'));
+        }
+        if($subnavs[0]->type=='blog'){
+            $contents = Blog::where('status',1)->where('subcategory_id',$subnavs[0]->id)->get();
+            if($contents!=null){
+                $blogs = Blog::where('status',1)->where('subcategory_id',$subnavs[0]->id)->first();
+
+            }else{
+                return view('layouts.error');}
+            $catName = $subnavs[0]->name;
+            return view('layouts.blogsubnav', compact('contents'),compact('catName'));
+        }
     }
 
     /**

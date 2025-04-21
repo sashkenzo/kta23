@@ -1,6 +1,6 @@
 @extends('dashboard.components.master')
 @section('page')
-<h1 class="h2">Navbar</h1>
+<h1 class="h2">Feature Cards</h1>
 @endsection
 @section('section')
     <div class="row">
@@ -40,13 +40,6 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label>Button Url</label>
-                                <input type="text" class="form-control" name="button_url" >
-                                @if($errors->has('button_url'))
-                                    <code>{{$errors->first('button_url')}}</code>
-                                @endif
-                            </div>
-                            <div class="form-group">
                                 <label>Status</label>
                                 <select class="form-control" name="status">
                                     <option value="1">Active</option>
@@ -55,7 +48,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <a class="btn btn-outline-dark" href="{{route('change.navbar')}}">Back</a>
+                            <a class="btn btn-outline-dark" href="{{route('change.cards')}}">Back</a>
 
                             <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#create-new-line">
                                 Create

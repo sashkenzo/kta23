@@ -25,13 +25,13 @@ class CardsDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function($query){
-                return $this->datatableAction($query,'cards');
+                return $this->datatableAction($query,'change.cards','id');
             })
             ->addColumn('image', function($query){
                 return $this->datatableImage($query);
             })
             ->addColumn('status', function($query){
-                return $this->datatableStatus($query,'cards');
+                return $this->datatableStatus($query,'change.cards','id');
             })
             ->rawColumns(['image','action','status'])
             ->setRowId('id');

@@ -3,21 +3,18 @@
     $banners = Banner::where('status', 1)->latest()->get();
 
 @endphp
-<div class="container">
-<div class="row justify-between">
-    @foreach ($banners->take(6) as $banner)
-        <div class="col">
-            <a href="{{$banner->button_url}}" class="p-2">
-                <div class="card justify-items-center text-white" style="width: 8rem;">
-                    <img src="{{$banner->image}}" class="card-img h-200" style="width: 100%;" alt="pic of a banner">
-                <div class="card-img-overlay">
-                <h5 class="card-title">{{$banner->name}}</h5>
-                <p class="card-text">{{$banner->content}}</p>
+@foreach ($banners->take(1) as $banner)
+<section class="bg-light-blue overflow-hidden mt-5 padding-xlarge" style="background-image: url({{$banner->image}});background-position: right; background-repeat: no-repeat;">
+    <div class="row d-flex flex-wrap align-items-center">
+        <div class="col-md-6 col-sm-12">
+            <div class="text-content offset-4 padding-medium">
+                <h3>{{$banner->content}}</h3>
+                <h2 class="display-2 pb-5 text-uppercase text-dark">{{$banner->name}}</h2>
+                <a href="{{$banner->button_url}}" class="btn btn-medium btn-dark text-uppercase btn-rounded-none">{{$banner->button_url_text}}</a>
             </div>
         </div>
-        </a>
+        <div class="col-md-6 col-sm-12">
         </div>
-    @endforeach
-        </div>
-</div>
-
+    </div>
+</section>
+@endforeach

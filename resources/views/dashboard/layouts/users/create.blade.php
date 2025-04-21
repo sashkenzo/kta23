@@ -47,10 +47,10 @@
                     </div>
                     <div class="form-group">
                         <label>Role</label>
-                        <select class="form-control " name="role">
-                            <option value="admin">admin</option>
-                            <option value="super">super</option>
-                            <option value="user">user</option>
+                        <select class="form-control" name="role">
+                            <option value='admin'>Admin</option>
+                            <option value='super'>Super</option>
+                            <option value='user'>User</option>
                         </select>
                     </div>
                     <div class="form-group">

@@ -12,11 +12,7 @@
             @endif
             <div class="card">
                 <div class="card-header">
-                    <a class="btn btn-outline-success" href="@if(Auth::user()->role=='admin')
-                            {{route('change.blog.create')}}
-                        @else
-                            {{route('mod.blog.create')}}
-                       @endif">Create</a>
+                    <a class="btn btn-outline-success" href="{{route('blog.create')}}">Create</a>
                 </div>
                 <div class="card-body">
                     {{$dataTable->table()}}

@@ -2,27 +2,24 @@
 @php
 $subnavbars = App\Models\SubNavBar::where('id',$product[0]->subcategory_id)->get();
 $userid= App\Models\User::where('id',$product[0]->user_id)->get();
+$images=['image','image_2','image_3','image_4'];
+$i=1;
 @endphp
 @section('content')
-<div class="container mt-5">
+<div class="container">
+
     <div class="row">
         <!-- Product Images -->
         <div class="col-md-6 mb-4">
-            @php
-            if($product[0]->image){
-            echo "<img src='".url($product[0]->image)."' alt='Product' class='img-fluid rounded mb-3 product-image ' id='mainImage'>'";
-            echo "<div class='d-flex justify-content-between'>";
-            echo "<img src='".url($product[0]->image)."' alt='Thumbnail 1' class='thumbnail rounded active ' onclick='changeImage(event, this.src)'>";
-                }
-                if($product[0]->image_2)
-                    {echo "<img src='".url($product[0]->image_2)."' alt='Thumbnail 2' class='thumbnail rounded ' onclick='changeImage(event, this.src)'>";}
-                if($product[0]->image_3)
-                    {echo "<img src='".url($product[0]->image_3)."' alt='Thumbnail 3' class='thumbnail rounded ' onclick='changeImage(event, this.src)'>";}
-                if($product[0]->image_4)
-                    {echo "<img src='".url($product[0]->image_4)."' alt='Thumbnail 4' class='thumbnail rounded ' onclick='changeImage(event, this.src)'>";}
-
-                @endphp
-            </div>
+            @if ($product[0]->image)
+            <img src='{{url($product[0]->image)}}' alt='Product' class='img-fluid rounded mb-3 product-image ' id='mainImage'>
+                <div class='d-flex justify-content-between'>
+                    @foreach($images as $image)
+                        <img src='{{url($product[0]->$image)}}' alt='Thumbnail {{$i}}' class='thumbnail rounded active ' onclick='changeImage(event, this.src)'>
+                        @php($i+=1)
+                    @endforeach
+                </div>
+            @endif
         </div>
 
         <!-- Product Details -->
@@ -35,7 +32,7 @@ $userid= App\Models\User::where('id',$product[0]->user_id)->get();
             <div class="mt-4">
                 <h5>Type:</h5>
                 <ul>
-                    <li>{{$subnavbars[0]->name}}</li>
+                    <li>{{$subnavbars->name}}</li>
                 </ul>
             </div>
             <div class="mt-4">
@@ -68,11 +65,9 @@ $userid= App\Models\User::where('id',$product[0]->user_id)->get();
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
-
+</div>
 <script>
     function changeImage(event, src) {
         document.getElementById('mainImage').src = src;
@@ -80,4 +75,5 @@ $userid= App\Models\User::where('id',$product[0]->user_id)->get();
         event.target.classList.add('active');
     }
 </script>
+
 @endsection

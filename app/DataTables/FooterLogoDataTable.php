@@ -25,12 +25,12 @@ class FooterLogoDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function($query){
-                return $this->datatableAction($query,'footerlogo');})
+                return $this->datatableAction($query,'change.footerlogo','id');})
             ->addColumn('image', function($query){
                 return $this->datatableImage($query);
             })
             ->addColumn('status', function($query){
-                return $this->datatableStatus($query,'footerlogo');
+                return $this->datatableStatus($query,'change.footerlogo','id');
             })
             ->rawColumns(['action','status','image'])
             ->setRowId('id');

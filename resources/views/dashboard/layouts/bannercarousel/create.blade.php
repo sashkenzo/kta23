@@ -31,6 +31,13 @@
                                 <code>{{$errors->first('name')}}</code>
                             @endif
                         </div>
+                    <div class="form-group">
+                        <label>Content</label>
+                        <input type="text" class="form-control" name="content">
+                        @if($errors->has('content'))
+                            <code>{{$errors->first('content')}}</code>
+                        @endif
+                    </div>
                         <div class="form-group">
                             <label>Button Url</label>
                             <input type="text" class="form-control" name="button_url">
@@ -39,10 +46,10 @@
                             @endif
                         </div>
                     <div class="form-group">
-                        <label>Serial</label>
-                        <input type="number" class="form-control" name="serial">
-                        @if($errors->has('serial'))
-                            <code>{{$errors->first('serial')}}</code>
+                        <label>Button Url text</label>
+                        <input type="text" class="form-control" name="button_url_text" >
+                        @if($errors->has('button_url_text'))
+                            <code>{{$errors->first('button_url_text')}}</code>
                         @endif
                     </div>
                     <div class="form-group">

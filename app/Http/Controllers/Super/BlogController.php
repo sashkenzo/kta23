@@ -42,10 +42,10 @@ class BlogController extends Controller
             'subcategory_id' => ['required'],
 
         ]));
-        $blog->slug=Str::slug($blog->name);
+        $blog->slug=time().Str::slug($blog->name);
         $blog->save();
 
-        return redirect()->route('super.blog')->with('status', 'Product created successfully')->with('success','success');
+        return redirect()->route('blog')->with('status', 'Product created successfully')->with('success','success');
 
 
     }
@@ -71,14 +71,42 @@ class BlogController extends Controller
      */
     public function update(Request $request, Blog $blog)
     {
-        //
+        $blog = Blog::where('slug',$slug)->get();
+        $blog->fill($request->validate([
+            'name' => ['required', 'max:100'],
+            'user_id' => ['required'],
+            'status' => ['required'],
+            'title' => ['required'],
+            'content' => ['required'],
+            'short_content' => ['required'],
+            'long_content' => ['required'],
+            'subcategory_id' => ['required'],
+
+        ]));
+        $blog->slug=time().Str::slug($blog->name);
+        $blog->save();
+
+        return redirect()->route('blog')->with('status', 'Product created successfully')->with('success','success');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Blog $blog)
+    public function destroy( string $slug)
     {
-        //
+        $blog = Blog::where('slug',$slug)->get();
+        $blog->delete();
+        return redirect()->route('blog')->with('status','A blog deleted successfully')->with('success','success');
+
+    }
+
+    public function changeStatusBtn(Request $request, string $slug)
+    {
+        $blog = Blog::where('slug',$slug)->get();
+        $blog[0]->fill($request->validate([
+            'status'=>['required'],]));
+        $blog[0]->save();
+        return redirect()->route('blog')->with('status','Blog: '.$blog[0]->slug.' status was updated successfully')->with('success','success');
     }
 }

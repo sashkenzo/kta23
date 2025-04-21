@@ -47,7 +47,6 @@
                                 <select class="form-control" name="type">
                                     <option value="blog">Blog</option>
                                     <option value="product">Product</option>
-                                    <option value="graphic">Graphic</option>
                                 </select>
                             </div>
                             <div class="form-group">

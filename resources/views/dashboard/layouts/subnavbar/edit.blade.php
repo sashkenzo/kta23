@@ -40,16 +40,15 @@
                         <div class="form-group">
                             <label>Type of page | Current : {{$subnav->type}}</label>
                             <select class="form-control" name="type">
-                                <option value="blog">Blog</option>
-                                <option value="product">Product</option>
-                                <option value="graphic">Graphic</option>
+                                <option {{$subnav->type=='blog' ? 'selected': ''}} value="blog">Blog</option>
+                                <option {{$subnav->type=='product' ? 'selected': ''}} value="product">Product</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Status | Current : {{$subnav->status == 1 ? 'Active': 'Inactive'}}</label>
                             <select class="form-control" name="status">
-                                <option value="1">1</option>
-                                <option value="0">0</option>
+                                <option {{$subnav->status == 1 ? 'selected': ''}} value='1'>Active</option>
+                                <option {{$subnav->status == 0 ? 'selected': ''}} value='0'>inactive</option>
                             </select>
                         </div>
                     </div>

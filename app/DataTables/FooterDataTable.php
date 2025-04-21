@@ -25,10 +25,10 @@ class FooterDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function($query){
-                return $this->datatableAction($query,'footer');
+                return $this->datatableAction($query,'change.footer','id');
             })
             ->addColumn('status', function($query){
-                return $this->datatableStatus($query,'footer');
+                return $this->datatableStatus($query,'change.footer','id');
             })
             ->rawColumns(['action','status'])
             ->setRowId('id');

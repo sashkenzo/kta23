@@ -1,10 +1,9 @@
 @php
     use App\Models\Product;
-    $products= Product::where('status', 1)->latest()->take(4)->get();
+    $products= Product::where('status', 1)->latest()->simplePaginate(12);
 @endphp
 
 <div class="container">
-    <h2 class="text-center">Latest</h2>
     <div class="row justify-between">
         @foreach($products as $product)
             <div class="col">
@@ -20,5 +19,6 @@
 
             </div>
         @endforeach
+        {{$products->links()}}
     </div>
 </div>

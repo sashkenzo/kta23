@@ -43,6 +43,7 @@ class BannerController extends Controller
             'name'=>['required','max:100'],
             'content'=>['required','max:200'],
             'button_url'=>['max:200'],
+            'button_url_text'=>['max:200'],
             'status'=>['required'],
         ]));
         $banner->image = $this->uploadImage($request,'image','upload/carousel',$banner->image);
@@ -81,6 +82,7 @@ class BannerController extends Controller
             'name'=>['required','max:100'],
             'content'=>['required','max:200'],
             'button_url'=>['max:200'],
+            'button_url_text'=>['max:200'],
             'status'=>['required'],
         ]));
         $banner->image = $this->uploadImage($request,'image','upload/carousel',$banner->image);
