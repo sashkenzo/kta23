@@ -13,8 +13,8 @@ $navs=\App\Models\Navbar::where('top',1)
     <nav id="header-nav" class="navbar navbar-expand-md px-3 mb-3 text-black">
         <div class="container-fluid">
             @foreach($footerlogos as $footerlogo)
-            <a class="navbar-brand" href="{{$footerlogo->homelink}}">
-                <img src="{{url($footerlogo->image)}}" class="logo" height="75px"alt="{{$footerlogo->homelink}}">
+            <a class="logo" href="{{$footerlogo->homelink}}">
+                <img src="{{url($footerlogo->image)}}" class="logo" height="50px" width="150px" alt="{{$footerlogo->homelink}}">
             </a>
             @endforeach
             <button class="navbar-toggler d-flex d-md-none order-3 p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,8 +23,8 @@ $navs=\App\Models\Navbar::where('top',1)
             <div class="offcanvas offcanvas-end" tabindex="-1" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
                 <div class="offcanvas-header px-4 pb-0">
                     @foreach($footerlogos as $footerlogo)
-                    <a class="navbar-brand" href="{{$footerlogo->homelink}}">
-                        <img src="{{url($footerlogo->image)}}" class="logo" alt="{{$footerlogo->homelink}}">
+                    <a class="logo" href="{{$footerlogo->homelink}}">
+                        <img src="{{url($footerlogo->image)}}" class="logo" height="50px" width="150px" alt="{{$footerlogo->homelink}}">
                     </a>
                     @endforeach
                     <button type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#bdNavbar"></button>

@@ -44,13 +44,6 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label>Link</label>
-                                <input type="text" class="form-control" name="text">
-                                @if($errors->has('text'))
-                                    <code>{{$errors->first('text')}}</code>
-                                @endif
-                            </div>
-                            <div class="form-group">
                                 <label>Status</label>
                                 <select class="form-control" name="status">
                                     <option value="1">Active</option>

@@ -6,7 +6,12 @@ use Illuminate\Http\Request;
 
 trait datatablesTrait{
 
-    public function datatableAction($query,$route,$type){
+    public function datatableActionShow($query,$route,$type){
+        $showBtn="<a href='".route($route.'.show',$query->$type)."' class='btn btn-success btn-sm m-1'><svg width='16' height ='16' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'><path d='M13 17V20H18V22H6V20H11V17H4C3.44772 17 3 16.5523 3 16V4H2V2H22V4H21V16C21 16.5523 20.5523 17 20 17H13ZM5 15H19V4H5V15ZM10 6L15 9.5L10 13V6Z'></path></svg></a>";
+        return $showBtn;
+    }
+        public function datatableAction($query,$route,$type){
+
         $editBtn="<a href='".route($route.'.edit',$query->$type)."' class='btn btn-primary btn-sm mr-2'><svg width='16' height ='16' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'><path d='M15.7279 9.57627L14.3137 8.16206L5 17.4758V18.89H6.41421L15.7279 9.57627ZM17.1421 8.16206L18.5563 6.74785L17.1421 5.33363L15.7279 6.74785L17.1421 8.16206ZM7.24264 20.89H3V16.6473L16.435 3.21231C16.8256 2.82179 17.4587 2.82179 17.8492 3.21231L20.6777 6.04074C21.0682 6.43126 21.0682 7.06443 20.6777 7.45495L7.24264 20.89Z'></path></svg></a>";
 
         $delBtn="<form action='".route($route.'.delete',$query->$type)."' method='POST'>
@@ -40,11 +45,6 @@ trait datatablesTrait{
     }
     public function datatableCountSub($query,$subcat){
         return $count= $subcat::where('navbar_id',$query->id)->count();
-    }
-    public function datatableActionProduct($query,$route,$type){
-        $showBtn="<a href='".route($route.'.show',$query->$type)."' class='btn btn-success btn-sm m-1'><svg width='16' height ='16' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'><path d='M13 17V20H18V22H6V20H11V17H4C3.44772 17 3 16.5523 3 16V4H2V2H22V4H21V16C21 16.5523 20.5523 17 20 17H13ZM5 15H19V4H5V15ZM10 6L15 9.5L10 13V6Z'></path></svg></a>";
-
-        return $showBtn. $this->datatableAction($query, $route, $type);
     }
     public function datatableStatus($query,$route,$type)
     {

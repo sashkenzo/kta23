@@ -6,10 +6,7 @@
         <div class="container">
             <div class="row">
                 <div class="display-header d-flex justify-content-between pb-3">
-                    <h2 class="display-7 text-dark text-uppercase">Smart Watches</h2>
-                    <div class="btn-right">
-                        <a href="shop.html" class="btn btn-medium btn-normal text-uppercase">Go to Shop</a>
-                    </div>
+                    <h2 class="display-7 text-dark text-uppercase">Latest</h2>
                 </div>
                 <div class="swiper product-watch-swiper">
                     <div class="swiper-wrapper">

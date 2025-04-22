@@ -18,7 +18,9 @@ class HomepageController extends Controller
      */
     public function index(): View
     {
-        return view('homepage');
+        $latest= Product::where('status', 1)->first();
+        $products= Product::where('status', 1)->latest()->simplePaginate(12);
+        return view('homepage',compact('products'),compact('latest'));
     }
 
     /**

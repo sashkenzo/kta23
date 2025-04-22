@@ -16,9 +16,9 @@
                                 <a href="{{$bannercarousel->button_url}}" class="btn btn-medium btn-dark text-uppercase btn-rounded-none">{{$bannercarousel->button_url_text}}</a>
                             </div>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-5">
                             <div class="image-holder">
-                                <img class="h-400" src="{{url($bannercarousel->image)}}" alt="banner">
+                                <img class="img-fluid" src="{{url($bannercarousel->image)}}" alt="banner">
                             </div>
                         </div>
                     </div>

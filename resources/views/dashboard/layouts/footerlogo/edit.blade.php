@@ -42,13 +42,6 @@
                             @endif
                         </div>
                         <div class="form-group">
-                            <label>Link</label>
-                            <input type="text" class="form-control" value="{{$footerlogo->text}}" name="homelink">
-                            @if($errors->has('text'))
-                                <code>{{$errors->first('text')}}</code>
-                            @endif
-                        </div>
-                        <div class="form-group">
                             <label>Status : {{$footerlogo->status}}</label>
                             <select class="form-control" name="status">
                                 <option {{$footerlogo->status == 1 ? 'selected': ''}} value="1">Active</option>

@@ -42,9 +42,8 @@ class FooterLogoController extends Controller
             'name' => ['required', 'max:100'],
             'status' => ['required'],
             'homelink' => [],
-            'text' => [],
         ]));
-        $footerlogo->image = $this->uploadImage($request, 'image', 'upload/logo', $footerlogo->image);
+        $footerlogo->image = $this->uploadImage($request, 'image', 'upload', $footerlogo->image);
         $footerlogo->save();
         return redirect()->route('change.footerlogo')->with('status', 'Footer logo created successfully');
     }
@@ -80,9 +79,8 @@ class FooterLogoController extends Controller
                 'name' => ['required', 'max:100'],
                 'status' => ['required'],
                 'homelink' => [],
-                'text' => [],
             ]));
-            $footerlogo->image = $this->uploadImage($request, 'image', 'upload/logo', $footerlogo->image);
+            $footerlogo->image = $this->uploadImage($request, 'image', 'upload', $footerlogo->image);
             $footerlogo->save();
             return redirect()->route('change.footerlogo')->with('status', 'Footer logo created successfully');
         }

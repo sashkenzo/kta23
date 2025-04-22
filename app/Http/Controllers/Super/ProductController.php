@@ -36,7 +36,8 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $product = new Product();
-
+        $request->validate([
+            'image' => ['required']]);
         $product->fill($request->validate([
             'name' => ['required', 'max:100'],
             'user_id' => ['required'],
@@ -47,10 +48,11 @@ class ProductController extends Controller
             'subcategory_id' => ['required'],
         ]));
 
-        $product->slug=time().Str::slug($product->name);
+        $product->slug=time().'-'.Str::slug($product->name);
         $product->type='product';
 
         $images=['image','image_2','image_3','image_4'];
+
         foreach($images as $image){
             if($request->$image){
                 $request->validate([
@@ -70,16 +72,17 @@ class ProductController extends Controller
      */
     public function show(string $slug)
     {
-        $product = Product::where('status', 1)->where('slug',$slug)->get();
+        $product = Product::where('status', 1)->where('slug',$slug)->first();
         return view('layouts.product', compact('product'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $id)
+    public function edit(string $id)
     {
-        return view('dashboard.layouts.product.edit');
+        $product = Product::find($id);
+        return view('dashboard.layouts.product.edit',compact('product'));
     }
 
     /**
@@ -87,7 +90,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product, string $slug)
     {
-        $product = Product::FindOfDie($slug);
+        $product = Product::findOrFail($slug);
         if($product->slug!=Str::slug($product->name)){
             $product->fill($request->validate([
                 'name' => ['required', 'max:100'],
@@ -99,9 +102,10 @@ class ProductController extends Controller
                 'subcategory_id' => ['required'],
         ]));
 
-        $product->slug=time().Str::slug($product->name);
+        $product->slug=time().'-'.Str::slug($product->name);
         $product->type='product';
-
+        $request->validate([
+            'image' => ['required']]);
         $images=['image','image_2','image_3','image_4'];
         foreach($images as $image){
             if($request->$image){
@@ -125,12 +129,12 @@ class ProductController extends Controller
      */
     public function destroy(string $slug)
     {
-        $product = Product::where('slug',$slug)->get();
+        $product = Product::findOrFail($slug);
         $images=['image','image_2','image_3','image_4'];
         foreach($images as $image) {
-            $this->deleteImage($product[0], $image);
+            $this->deleteImage($product, $image);
         }
-        $product[0]->delete();
+        $product->delete();
         return redirect()->route('product')->with('status','A product deleted successfully')->with('success','success');
 
     }

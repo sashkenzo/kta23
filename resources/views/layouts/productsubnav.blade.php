@@ -4,28 +4,26 @@
     <div class="container">
         <h2 class="text-center">{{$catName}}</h2>
         <div class="row">
-            <div class="swiper product-watch-swiper">
-                <div class="swiper-wrapper">
             @foreach($products as $product)
-                        <div class="swiper-slide">
-                            <div class="product-card position-relative">
+                            <div class="product-card position-relative col-6 col-md-4 col-lg-3">
+                                <a href="../product/{{$product->slug}}">
                                 <div class="image-holder">
+
                                     <img src="{{url($product->image)}}" alt="product-item" class="img-fluid">
                                 </div>
                                     <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                                    <h3 class="card-title text-uppercase">
-                                        <a href="../product/{{$product->slug}}">{{$product->name}}</a>
-                                    </h3>
+                                            <h3 class="card-title text-uppercase">
+                                        {{$product->name}}
+                                    </h3></div>
+                                        <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
                                     <span class="item-price text-primary">{{$product->price}}€</span>
-                                </div>
+
+                                </div></a>
                             </div>
-                        </div>
             @endforeach
-            {{$products->links()}}
+                {{$products->links()}}
                 </div>
             </div>
-        </div>
-    </div>
     </section>
 
 

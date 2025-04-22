@@ -23,23 +23,23 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label>Name</label>
-                            <input type="text" class="form-control" name="name">
+                            <input type="text" class="form-control" name="name" value="{{$blog->name}}">
                             @if($errors->has('name'))
                                 <code>{{$errors->first('name')}}</code>
                             @endif
                         </div>
                         <div class="form-group">
                             <label>Blog Title</label>
-                            <input type="text" class="form-control" name="title">
+                            <input type="text" class="form-control" name="title" value="{{$blog->title}}">
                             @if($errors->has('title'))
                                 <code>{{$errors->first('title')}}</code>
                             @endif
                         </div>
                         <div class="form-group">
                             <label>Content</label>
-                            <textarea type="text" class="form-control" name="content" rows="4" cols="50"></textarea>
-                            @if($errors->has('description'))
-                                <code>{{$errors->first('description')}}</code>
+                            <textarea type="text" class="form-control" name="content" rows="4" cols="50" {{$blog->content}}></textarea>
+                            @if($errors->has('content'))
+                                <code>{{$errors->first('content')}}</code>
                             @endif
                         </div>
                         <div class="form-group">

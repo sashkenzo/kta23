@@ -24,13 +24,12 @@ require __DIR__.'/auth.php';
 
 Route::get('/product', [ProductController::class, 'index'])->name('product');
 Route::get('/product/new', [ProductController::class, 'create'])->name('product.create');
-Route::post('/product/new', [ProductController::class, 'store'])->name('product.store');
+Route::post('/product', [ProductController::class, 'store'])->name('product.store');
 Route::get('/product/{slug}', [ProductController::class, 'show'])->name('product.show');
-Route::get('/product/{slug}/edit', [ProductController::class, 'edit'])->name('product.edit');
-Route::put('/product/{slug}/edit', [ProductController::class, 'update'])->name('product.update');
-Route::put('/product/{slug}/changestatus', [ProductController::class, 'changeStatusBtn'])->name('product.changestatus');
-Route::delete('/product/{slug}/edit', [ProductController::class, 'destroy'])->name('product.delete');
-
+Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
+Route::put('/product/edit/{id}', [ProductController::class, 'update'])->name('product.update');
+Route::delete('/product/edit/{id}', [ProductController::class, 'destroy'])->name('product.delete');
+Route::put('/product/changestatus/{slug}', [ProductController::class, 'changeStatusBtn'])->name('product.changestatus');
 
 Route::get('/cat/{slug}', [HomepageController::class, 'show'])->name('homepage.show');
 

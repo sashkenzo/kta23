@@ -29,7 +29,7 @@ class ProductDataTable extends DataTable
                 return $this->datatableStatus($query,'product','slug');
             })
             ->addColumn('action', function($query){
-                return $this->datatableActionProduct($query,'product','slug');
+                return $this->datatableActionShow($query,'product','slug').$this->datatableAction($query,'product','id');
             })
             ->rawColumns(['image','action','status']);
     }

@@ -90,7 +90,7 @@ class CardsController extends Controller
      */
     public function destroy(string $id)
     {
-        $cards = Cards::findOrFail($id);
+        $cards = Cards::find($id);
         $this->deleteImage($cards, 'image');
         $cards->delete();
         return redirect()->route('change.cards')->with('status','A card deleted successfully');
