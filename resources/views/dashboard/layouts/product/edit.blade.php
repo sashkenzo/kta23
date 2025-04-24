@@ -107,7 +107,7 @@
 
                             <div class="form-group">
                                 <label>price</label>
-                                <input type="number" class="form-control" name="price" >
+                                <input type="number" class="form-control" name="price" value="{{$product->price}}">
                                 @if($errors->has('price'))
                                     <code>{{$errors->first('price')}}</code>
                                 @endif
@@ -116,8 +116,8 @@
                             <div class="form-group">
                             <label>Status : {{$product->status}}</label>
                             <select class="form-control" name="status">
-                                <option {{$product->status == 1 ? 'selected': ''}} value='1'>1</option>
-                                <option {{$product->status == 0 ? 'selected': ''}} value='0'>0</option>
+                                <option {{$product->status == 1 ? 'selected': ''}} value='1'>Active</option>
+                                <option {{$product->status == 0 ? 'selected': ''}} value='0'>Inactive</option>
                             </select>
                         </div>
                     </div>

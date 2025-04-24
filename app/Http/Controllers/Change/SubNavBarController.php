@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Change;
 
 use App\DataTables\SubNavBarDataTable;
 use App\Http\Controllers\Controller;
+use App\Models\Blog;
 use App\Models\Navbar;
+use App\Models\Product;
 use App\Models\SubNavBar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -91,9 +93,14 @@ class SubNavBarController extends Controller
     public function destroy(string $id)
     {
         $subnavbar = SubNavBar::findOrFail($id);
-        $subnavbar->delete();
-        return redirect()->route('change.subnavs')->with('status','Sub-category for NavBar deleted successfully')->with('success','success');
-
+        $subnavproduct = Product::where('subcategory_id',$id)->count();
+        $subnavblog = Blog::where('subcategory_id',$id)->count();
+        if($subnavproduct > 0 or $subnavblog > 0){
+            return redirect()->route('change.subnavs')->with('status','Cant delete element. It has sub items')->with('success','danger');
+        }else{
+            $subnavbar->delete();
+            return redirect()->route('change.subnavs')->with('status','Navbar Category deleted successfully')->with('success','success');
+        }
     }
     public function changeStatusBtn(Request $request, string $id)
     {

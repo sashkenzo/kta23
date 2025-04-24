@@ -31,6 +31,10 @@ $navs=\App\Models\Navbar::where('top',1)
                 </div>
                 <div class="offcanvas-body">
                     <ul id="navbar" class="navbar-nav text-uppercase justify-content-end align-items-center flex-grow-1 pe-3">
+                        <form class="d-flex" action="{{route('homepage.index')}}" method="GET" name="search">
+                            <input class="form-control me-2" type="search" placeholder="..." aria-label="Search" name="search">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
                         @foreach($navs as $nav)
                         <li class="nav-item dropdown">
                             <a class="nav-link me-4 dropdown-toggle link-dark" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">{{$nav->name}}</a>

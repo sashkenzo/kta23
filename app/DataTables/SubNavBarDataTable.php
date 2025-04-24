@@ -2,7 +2,9 @@
 
 namespace App\DataTables;
 
+use App\Models\Blog;
 use App\Models\Navbar;
+use App\Models\Product;
 use App\Models\SubNavBar;
 use App\Traits\datatablesTrait;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
@@ -34,7 +36,16 @@ class SubNavBarDataTable extends DataTable
             ->addColumn('status', function($query){
                 return $this->datatableStatus($query,'change.subnavs','id');
             })
-            ->rawColumns(['action','status','parentCategory'])
+            ->addColumn('items', function($query){
+                $subnavbar = SubNavBar::where('type',$query->type)->first()->type;
+                if($subnavbar=='product'){
+                    return $subnavproduct = Product::where('subcategory_id',$query->id)->count();
+                }
+                if($subnavbar=='product'){
+                    return $subnavblog = Blog::where('subcategory_id',$query->id)->count();
+                }
+            })
+            ->rawColumns(['action','status','items','parentCategory'])
             ->setRowId('id');
     }
 
@@ -78,7 +89,7 @@ class SubNavBarDataTable extends DataTable
             Column::make('id'),
             Column::make('name'),
             Column::make('parentCategory'),
-            Column::make('slug'),
+            Column::make('items'),
             Column::make('status'),
             Column::computed('action')
                 ->exportable(false)

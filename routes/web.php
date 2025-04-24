@@ -30,7 +30,7 @@ Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('prod
 Route::put('/product/edit/{id}', [ProductController::class, 'update'])->name('product.update');
 Route::delete('/product/edit/{id}', [ProductController::class, 'destroy'])->name('product.delete');
 Route::put('/product/changestatus/{slug}', [ProductController::class, 'changeStatusBtn'])->name('product.changestatus');
-
+//Route::get('/search', [HomepageController::class, 'search'])->name('homepage.show');
 Route::get('/cat/{slug}', [HomepageController::class, 'show'])->name('homepage.show');
 
 

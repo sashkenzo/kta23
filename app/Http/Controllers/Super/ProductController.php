@@ -104,8 +104,6 @@ class ProductController extends Controller
 
         $product->slug=time().'-'.Str::slug($product->name);
         $product->type='product';
-        $request->validate([
-            'image' => ['required']]);
         $images=['image','image_2','image_3','image_4'];
         foreach($images as $image){
             if($request->$image){

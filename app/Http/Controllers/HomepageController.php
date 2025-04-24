@@ -16,12 +16,17 @@ class HomepageController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index(Request $request): View
     {
+        if(request()->has('search')){
+            $products= Product::where('status', 1)->where('name', 'like', '%'.request('search','').'%')->paginate(12);
+            return view('layouts.search', compact('products'));
+        }
         $latest= Product::where('status', 1)->first();
         $products= Product::where('status', 1)->latest()->simplePaginate(12);
         return view('homepage',compact('products'),compact('latest'));
     }
+
 
     /**
      * Show the form for creating a new resource.
