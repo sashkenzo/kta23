@@ -88,9 +88,9 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product, string $slug)
+    public function update(Request $request, Product $product, string $id)
     {
-        $product = Product::findOrFail($slug);
+        $product = Product::findOrFail($id);
         if($product->slug!=Str::slug($product->name)){
             $product->fill($request->validate([
                 'name' => ['required', 'max:100'],
@@ -125,9 +125,9 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $slug)
+    public function destroy(string $id)
     {
-        $product = Product::findOrFail($slug);
+        $product = Product::findOrFail($id);
         $images=['image','image_2','image_3','image_4'];
         foreach($images as $image) {
             $this->deleteImage($product, $image);

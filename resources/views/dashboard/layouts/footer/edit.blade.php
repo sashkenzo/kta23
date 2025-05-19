@@ -1,6 +1,6 @@
 @extends('dashboard.components.master')
 @section('page')
-<h1 class="h2">Edit item for Navbar</h1>
+<h1 class="h2">Edit item for Footer Row</h1>
 @endsection
 @section('section')
     <div class="row">
@@ -12,7 +12,7 @@
             @endif
             <div class="card">
                 <div class="card-header">
-                    <h4>edit navbar category</h4>
+                    <h4>edit footer row</h4>
                 </div>
                 <form action="{{route('change.footer.update',$footer->id)}}" method="POST" enctype="multipart/form-data" id="update">
                     @csrf

@@ -1,4 +1,3 @@
-
 @extends('layouts.master')
 @section('content')
     <div class="container my-2">
@@ -8,17 +7,15 @@
                     <div class="card">
                         @foreach($contents as $content)
                 <div class="card-header">
-                    <h4>{{$content->name}}</h4>
+                    <h4>{{$content->title}}</h4>
                 </div>
                 <div class="card-body">
-                    <p> {{$content->name}}</p>
+                    <p> {{$content->content}}</p>
                 </div>
                         @endforeach
+                </div>
             </div>
         </div>
-
     </div>
-    </div>
-
 @endsection
 

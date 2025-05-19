@@ -19,8 +19,10 @@ class HomepageController extends Controller
     public function index(Request $request): View
     {
         if(request()->has('search')){
+            $search = request('search','');
             $products= Product::where('status', 1)->where('name', 'like', '%'.request('search','').'%')->paginate(12);
-            return view('layouts.search', compact('products'));
+            //dd($products);
+            return view('layouts.search', compact('products'),compact('search'));
         }
         $latest= Product::where('status', 1)->first();
         $products= Product::where('status', 1)->latest()->simplePaginate(12);

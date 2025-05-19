@@ -29,23 +29,23 @@
     <div class="row mt-sm-4">
         <div class="col-12 col-md-12 col-lg-12 mt-4">
             <div class="card">
-                <form method="POST" action="{{route('profile.updateProfile')}}" class="needs-validation" novalidate="" enctype="multipart/form-data">
+                <form method="POST" action="{{route('profile.updateProfile')}}" class="needs-validation" novalidate="" enctype="multipart/form-data" id="profile">
                     @csrf
                     <div class="card-header">
                         <h4>Edit Profile</h4>
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="form-group col-md-6 col-12">
+                            <div class="form-group col-md-6 col-12" id="profile">
                                 <label>Name</label>
-                                <input type="text" name="name" value="{{Auth::user()->name}}" class="form-control">
+                                <input type="text" name="name" value="{{Auth::user()->name}}" id="profile" class="form-control">
                                     @if($errors->has('name'))
                                     <code>{{$errors->first('name')}}</code>
                                     @endif
                             </div>
                             <div class="form-group col-md-6 col-12">
                                 <label>Phone</label>
-                                <input type="tel" name="phone" class="form-control" value="{{Auth::user()->phone}}">
+                                <input type="tel" name="phone" id="profile" value="{{Auth::user()->phone}}" class="form-control">
                                     @if($errors->has('phone'))
                                     <code>{{$errors->first('phone')}}</code>
                                     @endif
@@ -53,7 +53,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#edit-user-info">
+                    <button id="profile" type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#edit-user-info">
                         Change
                     </button>
                     <div class="modal fade" id="edit-user-info" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -84,7 +84,7 @@
     <div class="row mt-sm-4">
         <div class="col-12 col-md-12 col-lg-12 mt-4">
             <div class="card">
-                <form method="POST" action="{{route('profile.updateEmail')}}" class="needs-validation" novalidate="" enctype="multipart/form-data">
+                <form id="email" method="POST" action="{{route('profile.updateEmail')}}" class="needs-validation" novalidate="" enctype="multipart/form-data">
                     @csrf
                     <div class="card-header">
                         <h4>Edit Email</h4>
@@ -93,7 +93,7 @@
                         <div class="row">
                             <div class="form-group col-md-6 col-12">
                                 <label>Old Email</label>
-                                <input type="email"  name="current_email" class="form-control" value="{{Auth::user()->email}}">
+                                <input id="email" type="email" class="form-control" name="current_email" value="{{Auth::user()->email}}">
                                 @if($errors->has('current_email'))
                                     <code>{{$errors->first('current_email')}}</code>
                                 @endif
@@ -101,7 +101,7 @@
 
                             <div class="form-group col-md-6 col-12">
                                 <label>New Email</label>
-                                <input type="email"  name="email" class="form-control">
+                                <input id="email" type="email" name="email" class="form-control">
                                 @if($errors->has('email'))
                                     <code>{{$errors->first('email')}}</code>
                                 @endif
@@ -109,7 +109,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#edit-user-email">
+                        <button id="email" type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#edit-user-email">
                             Change
                         </button>
                         <div class="modal fade" id="edit-user-email" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -137,7 +137,7 @@
     <div class="row mt-sm-4">
         <div class="col-12 col-md-12 col-lg-12 mt-4">
             <div class="card">
-                <form method="POST" action="{{route('profile.updatePassword')}}" class="needs-validation" novalidate="" enctype="multipart/form-data">
+                <form id="pwd" method="POST" action="{{route('profile.updatePassword')}}" class="needs-validation" novalidate="" enctype="multipart/form-data">
                     @csrf
                     <div class="card-header">
                         <h4>Edit Password</h4>
@@ -146,7 +146,7 @@
                         <div class="row">
                             <div class="form-group col-md-6 col-12">
                                 <label>Current Password</label>
-                                <input type="password" name="current_password" class="form-control">
+                                <input  id="pwd" type="password" name="current_password" class="form-control">
                                 @if($errors->has('current_password'))
                                     <code>{{$errors->first('current_password')}}</code>
                                 @endif
@@ -157,7 +157,7 @@
                         <div class="row">
                             <div class="form-group col-md-6 col-12">
                                 <label>New Password</label>
-                                <input type="password"  name="password" class="form-control">
+                                <input  id="pwd" type="password"  name="password" class="form-control">
                                 @if($errors->has('password'))
                                     <code>{{$errors->first('password')}}</code>
                                 @endif
@@ -165,7 +165,7 @@
 
                             <div class="form-group col-md-6 col-12">
                                 <label>Confirm Password</label>
-                                <input type="password"  name="password_confirmation" class="form-control">
+                                <input  id="pwd" type="password"  name="password_confirmation" class="form-control">
                                 @if($errors->has('password_confirmation'))
                                     <code>{{$errors->first('password_confirmation')}}</code>
                                 @endif
@@ -173,7 +173,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#edit-user-email">
+                        <button id="pwd" type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#edit-user-email">
                             Change
                         </button>
                         <div class="modal fade" id="edit-user-email" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

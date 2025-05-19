@@ -164,7 +164,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
-                                    <form action="{{route('product.delete',$product->slug)}}" method="POST" id="delete">
+                                    <form action="{{route('product.delete',$product->id)}}" method="POST" id="delete">
                                         @csrf
                                         @method('DELETE')
                                     <button form="delete" type="submit" class="btn btn-outline-success">Accept</button>

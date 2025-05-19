@@ -61,18 +61,18 @@ class BlogController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit( string $slug)
+    public function edit( string $id)
     {
-        $blog = Blog::findOrFail($slug);
+        $blog = Blog::findOrFail($id);
         return view('dashboard.layouts.blog.edit',compact('blog'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $slug)
+    public function update(Request $request, string $id)
     {
-        $blog = Blog::findOrFail($slug);
+        $blog = Blog::findOrFail($id);
         $blog->fill($request->validate([
             'name' => ['required', 'max:100'],
             'user_id' => ['required'],
@@ -94,9 +94,9 @@ class BlogController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy( string $slug)
+    public function destroy( string $id)
     {
-        $blog = Blog::findOrFail($slug);
+        $blog = Blog::findOrFail($id);
         $blog->delete();
         return redirect()->route('blog')->with('status','A blog deleted successfully')->with('success','success');
 

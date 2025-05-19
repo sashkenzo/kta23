@@ -5,7 +5,7 @@
 
 @extends('dashboard.components.master')
 @section('page')
-<h1 class="h2">Navbar</h1>
+<h1 class="h2">Footer</h1>
 @endsection
 @section('section')
     <div class="row">
@@ -17,7 +17,7 @@
             @endif
                 <div class="card">
                     <div class="card-header">
-                        <h4>New category in navbar</h4>
+                        <h4>New footer row</h4>
                     </div>
                     <form action="{{route('change.footer.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf

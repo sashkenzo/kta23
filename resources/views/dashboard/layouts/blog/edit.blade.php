@@ -15,7 +15,7 @@
                 <div class="card-header">
                     <h4>Edit a Blog</h4>
                 </div>
-                <form action="{{route('blog.update',$blog->slug)}}" method="POST" enctype="multipart/form-data" id="update">
+                <form action="{{route('blog.update',$blog->id)}}" method="POST" enctype="multipart/form-data" id="update">
                     @csrf
                     @method('PUT')
                 <div class="card-body">
@@ -121,7 +121,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
-                                    <form action="{{route('blog.delete',$blog->slug)}}" method="POST" id="delete">
+                                    <form action="{{route('blog.delete',$blog->id)}}" method="POST" id="delete">
                                         @csrf
                                         @method('DELETE')
                                     <button form="delete" type="submit" class="btn btn-outline-success">Accept</button>
